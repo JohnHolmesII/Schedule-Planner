@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Schedule_Planner
@@ -39,6 +34,9 @@ namespace Schedule_Planner
                                    null);
 
             lbxCList.Items.Add(String.Format("{0}: {1}, {2} Units, Available: {3}", cs.CourseID, cs.Description, cs.Units, cs.Availability()));
+
+            uint hash = xxHashSharp.xxHash.CalculateHash(Encoding.UTF8.GetBytes(cs.CourseID));
+            MessageBox.Show(String.Format("{0:X}", hash));
         }
 
         private string GetString(TextBox txt)
