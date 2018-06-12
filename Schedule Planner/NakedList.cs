@@ -75,7 +75,7 @@ namespace Schedule_Planner
             --Size;
         }
 
-        public void Flush()
+        public void   Flush()
         {
             Head = null;
         }
