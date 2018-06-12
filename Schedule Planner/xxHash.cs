@@ -54,6 +54,7 @@ namespace xxHashSharp
         const uint PRIME32_5 = 374761393U;
 
         protected XXH_State _state;
+
         public xxHash()
         {
 
