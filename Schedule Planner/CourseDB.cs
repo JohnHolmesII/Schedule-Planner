@@ -1,21 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using xxHashSharp;
 
 namespace Schedule_Planner
 {
-    class CourseDB : ISerializable
+    [Serializable]
+    class CourseDB
     {
-        public ICollection<string> Keys => throw new NotImplementedException();
+        public  uint Size { get; private set; }
+        private uint tableSize;
+        private NakedList[] table;
 
-        public ICollection<Course> Values => throw new NotImplementedException();
-
-        public int Count => throw new NotImplementedException();
+        public CourseDB(uint rTSize)
+        {
+            Size = 0;
+            tableSize = rTSize;
+            table = new NakedList[tableSize];
+        }
 
         public void Add(string key, Course value)
+        {
+            uint index = GetIndex(key);
+
+            if (table[index] == null)
+            {
+                NakedList tmp = new NakedList();
+                tmp.Add(new Entry(key, value));
+                table[index] = tmp;
+                ++Size;
+            }
+            else
+            {
+                Entry tmp;
+                uint  workingSize = table[index].Size;
+
+                for (uint i = 0; i < workingSize; ++i)
+                {
+                    tmp = (Entry) table[index].Get(i);
+
+                    if (tmp.Key == key)
+                    {
+                        tmp.Value = value;
+                        return;
+                    }
+                    else
+                    {
+                        table[index].Add(new Entry(key, value));
+                        ++Size;
+                        return;
+                    }
+                }
+            }
+        }
+
+        public bool Remove(string key)
         {
             throw new NotImplementedException();
         }
@@ -25,14 +66,25 @@ namespace Schedule_Planner
             throw new NotImplementedException();
         }
 
-        public bool Remove(string key)
+        public string[] Keys => throw new NotImplementedException();
+
+        public Course[] Values => throw new NotImplementedException();
+
+        private uint GetIndex(string key)
         {
-            throw new NotImplementedException();
+            return xxHash.CalculateHash(Encoding.UTF8.GetBytes(key)) % tableSize;
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        private class Entry
         {
-            throw new NotImplementedException();
+            public string Key   { get; }
+            public Course Value { get; set; }
+
+            public Entry(string k, Course v)
+            {
+                Key = k;
+                Value = v;
+            }
         }
     }
 }
