@@ -63,19 +63,17 @@ namespace Schedule_Planner
 
         public bool ContainsKey(string key)
         {
-            throw new NotImplementedException();
+            uint keyHash = xxHashSharp.xxHash.CalculateHash(Encoding.UTF8.GetBytes(key));
+
+            return table[keyHash].Contains(key) > 0;
         }
-
-        public string[] Keys => throw new NotImplementedException();
-
-        public Course[] Values => throw new NotImplementedException();
 
         private uint GetIndex(string key)
         {
             return xxHash.CalculateHash(Encoding.UTF8.GetBytes(key)) % tableSize;
         }
 
-        private class Entry
+        public class Entry
         {
             public string Key   { get; }
             public Course Value { get; set; }

@@ -75,6 +75,19 @@ namespace Schedule_Planner
             --Size;
         }
 
+        public int    Contains(string key)
+        {
+            int tmp = -1;
+            Node curr = Head;
+
+            while (curr != null && !((CourseDB.Entry)curr.Data).Key.Equals(key))
+            {
+                ++tmp;
+            }
+
+            return tmp;
+        }
+
         public void   Flush()
         {
             Head = null;
