@@ -63,7 +63,7 @@ namespace Schedule_Planner
                 Node prev = Head;
                 Node curr;
 
-                for (int i = 0; i < index - 1; ++1)
+                for (int i = 0; i < index - 1; ++i)
                 {
                     prev = prev.Next;
                 }
