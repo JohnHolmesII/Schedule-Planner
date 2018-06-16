@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace Schedule_Planner
@@ -52,6 +55,35 @@ namespace Schedule_Planner
             }
 
             return id;
+        }
+
+        private void SaveDB(CourseDB cdb)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream fs = new FileStream("courses.db", FileMode.Create);
+
+            formatter.Serialize(fs, cdb);
+            fs.Close();
+        }
+
+        private CourseDB LoadDB()
+        {
+            CourseDB tmp = null;
+
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream     fs        = new FileStream("courses.db", FileMode.Open);
+
+                tmp = (CourseDB)formatter.Deserialize(fs);
+                fs.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("LoadDB(): error loading. " + e.Message);
+            }
+
+            return tmp;
         }
     }
 }
