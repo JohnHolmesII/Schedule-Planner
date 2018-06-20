@@ -1,4 +1,4 @@
-﻿namespace Schedule_Planner
+namespace Schedule_Planner
 {
     partial class frmMain
     {

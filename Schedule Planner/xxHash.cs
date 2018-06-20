@@ -1,4 +1,4 @@
-﻿/*
+/*
 xxHashSharp - A pure C# implementation of xxhash
 Copyright (C) 2014, Seok-Ju, Yun. (https://github.com/noricube/xxHashSharp)
 Original C Implementation Copyright (C) 2012-2014, Yann Collet. (https://code.google.com/p/xxhash/)
