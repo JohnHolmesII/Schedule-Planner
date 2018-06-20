@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
@@ -59,11 +59,18 @@ namespace Schedule_Planner
 
         private void SaveDB(CourseDB cdb)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream fs = new FileStream("courses.db", FileMode.Create);
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream fs = new FileStream("courses.db", FileMode.Create);
 
-            formatter.Serialize(fs, cdb);
-            fs.Close();
+                formatter.Serialize(fs, cdb);
+                fs.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error saving. " + e.Message);
+            }
         }
 
         private CourseDB LoadDB()
