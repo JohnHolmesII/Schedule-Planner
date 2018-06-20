@@ -10,18 +10,18 @@ namespace Schedule_Planner
     [Serializable]
     class CourseDB
     {
-        public  uint Size { get; private set; }
-        private uint tableSize;
+        public  uint        Size { get; private set; }
+        private uint        tableSize;
         private NakedList[] table;
 
         public CourseDB(uint rTSize)
         {
-            Size = 0;
+            Size      = 0;
             tableSize = rTSize;
-            table = new NakedList[tableSize];
+            table     = new NakedList[tableSize];
         }
 
-        public void Add(string key, Course value)
+        public  void     Add(string key, Course value)
         {
             uint index = GetIndex(key);
 
@@ -53,11 +53,10 @@ namespace Schedule_Planner
             }
         }
         
-        public Course Get(string key)
+        public  Course   Get(string key)
         {
-            Course tmp = null;
-
-            uint index = GetIndex(key);
+            Course tmp   = null;
+            uint   index = GetIndex(key);
 
             for (int i = 0; i < table[index].Size; ++i)
             {
@@ -73,15 +72,15 @@ namespace Schedule_Planner
             return tmp;
         }
 
-        public bool Remove(string key)
+        public  bool     Remove(string key)
         {
             throw new NotImplementedException();
         }
 
-        public string[] GetKeys()
+        public  string[] GetKeys()
         {
-            string[] tmp = new string[Size];
-            int index = 0;
+            string[]  tmp    = new string[Size];
+            int       index  = 0;
             NakedList bucket = null;
 
             for (int i = 0; i < tableSize; ++i)
@@ -91,7 +90,7 @@ namespace Schedule_Planner
                     for (int j = 0; j < bucket.Size; ++j)
                     {
                         Entry entry = (Entry) bucket.Get(j);
-                        tmp[index] = entry.Value.CourseID;
+                        tmp[index]  = entry.Value.CourseID;
                         ++index;
                     }
                 }
@@ -100,14 +99,14 @@ namespace Schedule_Planner
             return tmp;
         }
 
-        public bool ContainsKey(string key)
+        public  bool     ContainsKey(string key)
         {
             uint keyHash = xxHashSharp.xxHash.CalculateHash(Encoding.UTF8.GetBytes(key));
 
             return table[keyHash].Contains(key) > 0;
         }
 
-        private uint GetIndex(string key)
+        private uint     GetIndex(string key)
         {
             return xxHash.CalculateHash(Encoding.UTF8.GetBytes(key)) % tableSize;
         }
@@ -120,7 +119,7 @@ namespace Schedule_Planner
 
             public Entry(string k, Course v)
             {
-                Key = k;
+                Key   = k;
                 Value = v;
             }
         }

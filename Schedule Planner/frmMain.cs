@@ -25,7 +25,7 @@ namespace Schedule_Planner
             UpdateListBox();
         }
 
-        private void cmdGo_Click(object sender, EventArgs e)
+        private void     cmdGo_Click(object sender, EventArgs e)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace Schedule_Planner
             }
         }
 
-        private void UpdateListBox()
+        private void     UpdateListBox()
         {
             lbxCList.Items.Clear();
 
@@ -67,7 +67,7 @@ namespace Schedule_Planner
             }
         }
 
-        private string GetString(TextBox txt)
+        private string   GetString(TextBox txt)
         {
             string id = txt.Text.Trim();
 
@@ -79,12 +79,12 @@ namespace Schedule_Planner
             return id;
         }
 
-        private void SaveDB(CourseDB cdb)
+        private void     SaveDB(CourseDB cdb)
         {
             try
             {
                 IFormatter formatter = new BinaryFormatter();
-                Stream fs = new FileStream("courses.db", FileMode.Create);
+                Stream     fs        = new FileStream("courses.db", FileMode.Create);
 
                 formatter.Serialize(fs, cdb);
                 fs.Close();

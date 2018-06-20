@@ -39,7 +39,7 @@ namespace Schedule_Planner
 
         public Object Get(int index)
         {
-            if (index > Size) return null;
+            if (index > Size || index < 0) return null;
 
             Node tmp = Head;
 
@@ -78,7 +78,7 @@ namespace Schedule_Planner
 
         public int    Contains(string key)
         {
-            int tmp = -1;
+            int  tmp  = -1;
             Node curr = Head;
 
             while (curr != null && !((CourseDB.Entry)curr.Data).Key.Equals(key))
