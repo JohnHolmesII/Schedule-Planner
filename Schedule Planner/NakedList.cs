@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Schedule_Planner
 {
+    [Serializable]
     class NakedList
     {
         public  uint Size { get; private set; }
@@ -36,7 +37,7 @@ namespace Schedule_Planner
             ++Size;
         }
 
-        public Object Get(uint index)
+        public Object Get(int index)
         {
             if (index > Size) return null;
 
@@ -50,7 +51,7 @@ namespace Schedule_Planner
             return tmp.Data;
         }
 
-        public void   Remove(uint index)
+        public void   Remove(int index)
         {
             if (index > Size) return;
 
@@ -93,6 +94,7 @@ namespace Schedule_Planner
             Head = null;
         }
 
+        [Serializable]
         private class Node
         {
             public Object Data { get; set; }

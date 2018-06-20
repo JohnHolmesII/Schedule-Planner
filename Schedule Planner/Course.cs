@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Schedule_Planner
 {
+    [Serializable]
     class Course
     {
         public string       CourseID    { get; }

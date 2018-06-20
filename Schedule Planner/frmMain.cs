@@ -10,9 +10,17 @@ namespace Schedule_Planner
 {
     public partial class frmMain : Form
     {
+        private CourseDB mainDB;
+
         public frmMain()
         {
             InitializeComponent();
+
+            if ((mainDB = LoadDB()) == null)
+            {
+                mainDB = new CourseDB(10);
+                SaveDB(mainDB);
+            }
         }
 
         private void cmdGo_Click(object sender, EventArgs e)
@@ -35,13 +43,26 @@ namespace Schedule_Planner
                                        null,
                                        null);
 
-                lbxCList.Items.Add(String.Format("{0}: {1}, {2} Units, Available: {3}", cs.CourseID, cs.Description, cs.Units, cs.Availability()));
-
-                uint hash = xxHashSharp.xxHash.CalculateHash(Encoding.UTF8.GetBytes(cs.CourseID));
+                mainDB.Add(id, cs);
+                UpdateListBox();
+                SaveDB(mainDB);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void UpdateListBox()
+        {
+            lbxCList.ResetText();
+
+            string[] keys = mainDB.GetKeys();
+
+            for (int i = 0; i < keys.Length; ++i)
+            {
+                Course cs = mainDB.Get(keys[i]);
+                lbxCList.Items.Add(String.Format("{0}: {1}, {2} Units, Available: {3}", cs.CourseID, cs.Description, cs.Units, cs.Availability()));
             }
         }
 

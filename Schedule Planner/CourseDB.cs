@@ -37,7 +37,7 @@ namespace Schedule_Planner
                 Entry tmp;
                 uint  workingSize = table[index].Size;
 
-                for (uint i = 0; i < workingSize; ++i)
+                for (int i = 0; i < workingSize; ++i)
                 {
                     tmp = (Entry) table[index].Get(i);
 
@@ -46,19 +46,56 @@ namespace Schedule_Planner
                         tmp.Value = value;
                         return;
                     }
-                    else
-                    {
-                        table[index].Add(new Entry(key, value));
-                        ++Size;
-                        return;
-                    }
+                }
+
+                table[index].Add(new Entry(key, value));
+                ++Size;
+            }
+        }
+        
+        public Course Get(string key)
+        {
+            Course tmp = null;
+
+            uint index = GetIndex(key);
+
+            for (int i = 0; i < table[index].Size; ++i)
+            {
+                Entry entry = (Entry) table[index].Get(i);
+
+                if (entry.Value.CourseID.Equals(key))
+                {
+                    tmp = entry.Value;
+                    break;
                 }
             }
+
+            return tmp;
         }
 
         public bool Remove(string key)
         {
             throw new NotImplementedException();
+        }
+
+        public string[] GetKeys()
+        {
+            string[] tmp = new string[Size];
+            NakedList bucket = null;
+
+            for (int i = 0; i < tableSize; ++i)
+            {
+                if ((bucket = table[i]) != null)
+                {
+                    for (int j = 0; j < bucket.Size; ++j)
+                    {
+                        Entry entry = (Entry) bucket.Get(j);
+                        tmp[j] = entry.Value.CourseID;
+                    }
+                }
+            }
+
+            return tmp;
         }
 
         public bool ContainsKey(string key)
@@ -73,6 +110,7 @@ namespace Schedule_Planner
             return xxHash.CalculateHash(Encoding.UTF8.GetBytes(key)) % tableSize;
         }
 
+        [Serializable]
         public class Entry
         {
             public string Key   { get; }
