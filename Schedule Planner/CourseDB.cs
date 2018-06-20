@@ -81,6 +81,7 @@ namespace Schedule_Planner
         public string[] GetKeys()
         {
             string[] tmp = new string[Size];
+            int index = 0;
             NakedList bucket = null;
 
             for (int i = 0; i < tableSize; ++i)
@@ -90,7 +91,8 @@ namespace Schedule_Planner
                     for (int j = 0; j < bucket.Size; ++j)
                     {
                         Entry entry = (Entry) bucket.Get(j);
-                        tmp[j] = entry.Value.CourseID;
+                        tmp[index] = entry.Value.CourseID;
+                        ++index;
                     }
                 }
             }

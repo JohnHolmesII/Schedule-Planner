@@ -21,6 +21,8 @@ namespace Schedule_Planner
                 mainDB = new CourseDB(10);
                 SaveDB(mainDB);
             }
+
+            UpdateListBox();
         }
 
         private void cmdGo_Click(object sender, EventArgs e)
@@ -44,7 +46,6 @@ namespace Schedule_Planner
                                        null);
 
                 mainDB.Add(id, cs);
-                UpdateListBox();
                 SaveDB(mainDB);
             }
             catch (Exception ex)
@@ -55,7 +56,7 @@ namespace Schedule_Planner
 
         private void UpdateListBox()
         {
-            lbxCList.ResetText();
+            lbxCList.Items.Clear();
 
             string[] keys = mainDB.GetKeys();
 
@@ -87,6 +88,7 @@ namespace Schedule_Planner
 
                 formatter.Serialize(fs, cdb);
                 fs.Close();
+                UpdateListBox();
             }
             catch(Exception e)
             {
