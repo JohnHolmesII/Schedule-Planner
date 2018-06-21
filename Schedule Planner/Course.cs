@@ -29,7 +29,7 @@ namespace Schedule_Planner
             this.Coreqs = c;
         }
 
-        public string Availability ()
+        public string  Availability()
         {
             string s = "";
 
@@ -60,18 +60,10 @@ namespace Schedule_Planner
             return s.Trim();
         }
 
-        public override string ToString()
+        override
+        public string  ToString()
         {
-            string s;
-
-            s = CourseID + ": " +
-                Description + ", " +
-                Units + " units\nOffered: " +
-                Availability() + "\nPrerequisites: " +
-                CourseListString(Prereqs) + "\nCorequisites: " +
-                CourseListString(Coreqs);
-
-            return s;
+            return String.Format("{0}: {1}, {2} Units, Available: {3}", CourseID, Description, Units, Availability());
         }
     }
 }
