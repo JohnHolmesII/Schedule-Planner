@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
@@ -54,6 +54,14 @@ namespace Schedule_Planner
             }
         }
 
+        private void     cmdRemove_Click(object sender, EventArgs e)
+        {
+            Course cs = (Course) lbxCList.SelectedItem;
+
+            mainDB.Remove(cs.CourseID);
+            SaveDB(mainDB);
+        }
+
         private void     UpdateListBox()
         {
             lbxCList.Items.Clear();
@@ -62,8 +70,7 @@ namespace Schedule_Planner
 
             for (int i = 0; i < keys.Length; ++i)
             {
-                Course cs = mainDB.Get(keys[i]);
-                lbxCList.Items.Add(String.Format("{0}: {1}, {2} Units, Available: {3}", cs.CourseID, cs.Description, cs.Units, cs.Availability()));
+                lbxCList.Items.Add(mainDB.Get(keys[i]));
             }
         }
 
@@ -114,6 +121,11 @@ namespace Schedule_Planner
             }
 
             return tmp;
+        }
+
+        private void     lbxCList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmdRemove.Enabled = true;
         }
     }
 }

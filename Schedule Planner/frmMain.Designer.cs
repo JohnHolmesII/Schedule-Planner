@@ -41,6 +41,7 @@ namespace Schedule_Planner
             this.cbxSummer = new System.Windows.Forms.CheckBox();
             this.cbxSpring = new System.Windows.Forms.CheckBox();
             this.gbxAvail = new System.Windows.Forms.GroupBox();
+            this.cmdRemove = new System.Windows.Forms.Button();
             this.gbxAvail.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,10 +52,11 @@ namespace Schedule_Planner
             this.lbxCList.Name = "lbxCList";
             this.lbxCList.Size = new System.Drawing.Size(417, 212);
             this.lbxCList.TabIndex = 0;
+            this.lbxCList.SelectedIndexChanged += new System.EventHandler(this.lbxCList_SelectedIndexChanged);
             // 
             // cmdGo
             // 
-            this.cmdGo.Location = new System.Drawing.Point(322, 298);
+            this.cmdGo.Location = new System.Drawing.Point(261, 298);
             this.cmdGo.Name = "cmdGo";
             this.cmdGo.Size = new System.Drawing.Size(115, 45);
             this.cmdGo.TabIndex = 1;
@@ -163,11 +165,23 @@ namespace Schedule_Planner
             this.gbxAvail.TabStop = false;
             this.gbxAvail.Text = "Availability";
             // 
+            // cmdRemove
+            // 
+            this.cmdRemove.Enabled = false;
+            this.cmdRemove.Location = new System.Drawing.Point(382, 298);
+            this.cmdRemove.Name = "cmdRemove";
+            this.cmdRemove.Size = new System.Drawing.Size(115, 45);
+            this.cmdRemove.TabIndex = 18;
+            this.cmdRemove.Text = "Remove Course";
+            this.cmdRemove.UseVisualStyleBackColor = true;
+            this.cmdRemove.Click += new System.EventHandler(this.cmdRemove_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.cmdRemove);
             this.Controls.Add(this.gbxAvail);
             this.Controls.Add(this.lblCourseUnits);
             this.Controls.Add(this.txtCourseUnits);
@@ -201,6 +215,7 @@ namespace Schedule_Planner
         private System.Windows.Forms.CheckBox cbxSummer;
         private System.Windows.Forms.CheckBox cbxSpring;
         private System.Windows.Forms.GroupBox gbxAvail;
+        private System.Windows.Forms.Button cmdRemove;
     }
 }
 

@@ -85,6 +85,7 @@ namespace Schedule_Planner
                 {
                     table[index].Remove(i);
                     tmp = true;
+                    --Size;
                     break;
                 }
             }

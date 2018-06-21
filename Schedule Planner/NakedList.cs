@@ -76,6 +76,16 @@ namespace Schedule_Planner
             --Size;
         }
 
+        public void   Remove(string key)
+        {
+            int index = Contains(key);
+
+            if (index >= 0)
+            {
+                Remove(index);
+            }
+        }
+
         public int    Contains(string key)
         {
             int  tmp  = -1;
