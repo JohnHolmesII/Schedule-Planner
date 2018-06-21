@@ -29,6 +29,7 @@ namespace Schedule_Planner
         private void InitializeComponent()
         {
             this.lbxAvailable = new System.Windows.Forms.ListBox();
+            this.cmdSwitch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbxAvailable
@@ -39,11 +40,22 @@ namespace Schedule_Planner
             this.lbxAvailable.Size = new System.Drawing.Size(735, 95);
             this.lbxAvailable.TabIndex = 0;
             // 
+            // cmdSwitch
+            // 
+            this.cmdSwitch.Location = new System.Drawing.Point(655, 12);
+            this.cmdSwitch.Name = "cmdSwitch";
+            this.cmdSwitch.Size = new System.Drawing.Size(92, 31);
+            this.cmdSwitch.TabIndex = 20;
+            this.cmdSwitch.Text = "Open Builder";
+            this.cmdSwitch.UseVisualStyleBackColor = true;
+            this.cmdSwitch.Click += new System.EventHandler(this.cmdSwitch_Click);
+            // 
             // frmSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.cmdSwitch);
             this.Controls.Add(this.lbxAvailable);
             this.Name = "frmSchedule";
             this.Text = "Schedule Planner";
@@ -54,5 +66,6 @@ namespace Schedule_Planner
         #endregion
 
         private System.Windows.Forms.ListBox lbxAvailable;
+        private System.Windows.Forms.Button cmdSwitch;
     }
 }

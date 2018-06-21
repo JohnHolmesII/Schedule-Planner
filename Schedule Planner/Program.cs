@@ -16,7 +16,7 @@ namespace Schedule_Planner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmBuilder());
+            Application.Run(new frmSchedule());
         }
     }
 }

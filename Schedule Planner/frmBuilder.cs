@@ -13,7 +13,7 @@ namespace Schedule_Planner
 
             if ((mainDB = CourseDB.LoadDB()) == null)
             {
-                mainDB = new CourseDB(10);
+                mainDB = new CourseDB(1000);
                 mainDB.SaveDB();
             }
 
@@ -89,6 +89,22 @@ namespace Schedule_Planner
         private void     lbxCList_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmdRemove.Enabled = true;
+        }
+
+        private void cmdSwitch_Click(object sender, EventArgs e)
+        {
+            // Dirty filthy fucking hacks reeee
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm.Name == "frmSchedule")
+                {
+                    frm.Enabled = true;
+                    frm.Visible = true;
+                    break;
+                }
+            }
+
+            Close();
         }
     }
 }

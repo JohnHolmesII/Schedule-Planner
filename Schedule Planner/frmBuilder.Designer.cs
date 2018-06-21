@@ -42,6 +42,7 @@ namespace Schedule_Planner
             this.cbxSpring = new System.Windows.Forms.CheckBox();
             this.gbxAvail = new System.Windows.Forms.GroupBox();
             this.cmdRemove = new System.Windows.Forms.Button();
+            this.cmdSwitch = new System.Windows.Forms.Button();
             this.gbxAvail.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,11 +177,22 @@ namespace Schedule_Planner
             this.cmdRemove.UseVisualStyleBackColor = true;
             this.cmdRemove.Click += new System.EventHandler(this.cmdRemove_Click);
             // 
-            // frmMain
+            // cmdSwitch
+            // 
+            this.cmdSwitch.Location = new System.Drawing.Point(655, 321);
+            this.cmdSwitch.Name = "cmdSwitch";
+            this.cmdSwitch.Size = new System.Drawing.Size(92, 31);
+            this.cmdSwitch.TabIndex = 19;
+            this.cmdSwitch.Text = "Open Planner";
+            this.cmdSwitch.UseVisualStyleBackColor = true;
+            this.cmdSwitch.Click += new System.EventHandler(this.cmdSwitch_Click);
+            // 
+            // frmBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.cmdSwitch);
             this.Controls.Add(this.cmdRemove);
             this.Controls.Add(this.gbxAvail);
             this.Controls.Add(this.lblCourseUnits);
@@ -191,7 +203,7 @@ namespace Schedule_Planner
             this.Controls.Add(this.txtCourseID);
             this.Controls.Add(this.cmdGo);
             this.Controls.Add(this.lbxCList);
-            this.Name = "frmMain";
+            this.Name = "frmBuilder";
             this.Text = "Course Builder";
             this.gbxAvail.ResumeLayout(false);
             this.gbxAvail.PerformLayout();
@@ -216,6 +228,7 @@ namespace Schedule_Planner
         private System.Windows.Forms.CheckBox cbxSpring;
         private System.Windows.Forms.GroupBox gbxAvail;
         private System.Windows.Forms.Button cmdRemove;
+        private System.Windows.Forms.Button cmdSwitch;
     }
 }
 
