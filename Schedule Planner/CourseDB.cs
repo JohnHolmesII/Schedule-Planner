@@ -74,7 +74,22 @@ namespace Schedule_Planner
 
         public  bool     Remove(string key)
         {
-            throw new NotImplementedException();
+            bool tmp   = false;
+            uint index = GetIndex(key);
+
+            for (int i = 0; i < table[index].Size; ++i)
+            {
+                Entry entry = (Entry)table[index].Get(i);
+
+                if (entry.Value.CourseID.Equals(key))
+                {
+                    table[index].Remove(i);
+                    tmp = true;
+                    break;
+                }
+            }
+
+            return tmp;
         }
 
         public  string[] GetKeys()
