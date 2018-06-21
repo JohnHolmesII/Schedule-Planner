@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace Schedule_Planner
 {
-    public partial class frmMain : Form
+    public partial class frmBuilder : Form
     {
         private CourseDB mainDB;
 
-        public frmMain()
+        public frmBuilder()
         {
             InitializeComponent();
 

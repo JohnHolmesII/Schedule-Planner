@@ -1,6 +1,6 @@
 namespace Schedule_Planner
 {
-    partial class frmMain
+    partial class frmBuilder
     {
         /// <summary>
         /// Required designer variable.
