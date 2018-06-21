@@ -1,8 +1,9 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 using System.Text;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using xxHashSharp;
 
 namespace Schedule_Planner
@@ -88,6 +89,43 @@ namespace Schedule_Planner
                     --Size;
                     break;
                 }
+            }
+
+            return tmp;
+        }
+
+        public  void     SaveDB()
+        {
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream     fs        = new FileStream("courses.db", FileMode.Create);
+
+                formatter.Serialize(fs, this);
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error saving. " + e.Message);
+            }
+        }
+
+        static
+        public  CourseDB LoadDB()
+        {
+            CourseDB tmp = null;
+
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream     fs        = new FileStream("courses.db", FileMode.Open);
+
+                tmp = (CourseDB) formatter.Deserialize(fs);
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("LoadDB(): error loading. " + e.Message);
             }
 
             return tmp;

@@ -1,9 +1,4 @@
 using System;
-using System.IO;
-using System.Text;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace Schedule_Planner
@@ -16,10 +11,10 @@ namespace Schedule_Planner
         {
             InitializeComponent();
 
-            if ((mainDB = LoadDB()) == null)
+            if ((mainDB = CourseDB.LoadDB()) == null)
             {
                 mainDB = new CourseDB(10);
-                SaveDB(mainDB);
+                mainDB.SaveDB();
             }
 
             UpdateListBox();
@@ -46,7 +41,8 @@ namespace Schedule_Planner
                                        null);
 
                 mainDB.Add(id, cs);
-                SaveDB(mainDB);
+                mainDB.SaveDB();
+                UpdateListBox();
             }
             catch (Exception ex)
             {
@@ -59,7 +55,8 @@ namespace Schedule_Planner
             Course cs = (Course) lbxCList.SelectedItem;
 
             mainDB.Remove(cs.CourseID);
-            SaveDB(mainDB);
+            mainDB.SaveDB();
+            UpdateListBox();
         }
 
         private void     UpdateListBox()
@@ -84,43 +81,6 @@ namespace Schedule_Planner
             }
 
             return id;
-        }
-
-        private void     SaveDB(CourseDB cdb)
-        {
-            try
-            {
-                IFormatter formatter = new BinaryFormatter();
-                Stream     fs        = new FileStream("courses.db", FileMode.Create);
-
-                formatter.Serialize(fs, cdb);
-                fs.Close();
-                UpdateListBox();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show("Error saving. " + e.Message);
-            }
-        }
-
-        private CourseDB LoadDB()
-        {
-            CourseDB tmp = null;
-
-            try
-            {
-                IFormatter formatter = new BinaryFormatter();
-                Stream     fs        = new FileStream("courses.db", FileMode.Open);
-
-                tmp = (CourseDB)formatter.Deserialize(fs);
-                fs.Close();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show("LoadDB(): error loading. " + e.Message);
-            }
-
-            return tmp;
         }
 
         private void     lbxCList_SelectedIndexChanged(object sender, EventArgs e)
