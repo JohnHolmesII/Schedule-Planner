@@ -53,7 +53,7 @@ namespace Schedule_Planner
 
         public void   Remove(int index)
         {
-            if (index > Size) return;
+            if (index > Size || index < 0) return;
 
             if (index == 0)
             {
