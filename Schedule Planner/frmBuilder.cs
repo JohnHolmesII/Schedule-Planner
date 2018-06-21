@@ -54,9 +54,12 @@ namespace Schedule_Planner
         {
             Course cs = (Course) lbxCList.SelectedItem;
 
-            mainDB.Remove(cs.CourseID);
-            mainDB.SaveDB();
-            UpdateListBox();
+            if (cs != null)
+            {
+                mainDB.Remove(cs.CourseID);
+                mainDB.SaveDB();
+                UpdateListBox();
+            }
         }
 
         private void     UpdateListBox()
