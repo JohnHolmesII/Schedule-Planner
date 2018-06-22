@@ -32,6 +32,12 @@ namespace Schedule_Planner
             this.cmdSwitch = new System.Windows.Forms.Button();
             this.lbxFall = new System.Windows.Forms.ListBox();
             this.lblFall = new System.Windows.Forms.Label();
+            this.lblWinter = new System.Windows.Forms.Label();
+            this.lbxWinter = new System.Windows.Forms.ListBox();
+            this.lblSpring = new System.Windows.Forms.Label();
+            this.lbxSpring = new System.Windows.Forms.ListBox();
+            this.lblSummer = new System.Windows.Forms.Label();
+            this.lbxSummer = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbxAvailable
@@ -58,7 +64,7 @@ namespace Schedule_Planner
             // lbxFall
             // 
             this.lbxFall.FormattingEnabled = true;
-            this.lbxFall.Location = new System.Drawing.Point(80, 50);
+            this.lbxFall.Location = new System.Drawing.Point(52, 12);
             this.lbxFall.Name = "lbxFall";
             this.lbxFall.Size = new System.Drawing.Size(120, 95);
             this.lbxFall.TabIndex = 21;
@@ -66,17 +72,74 @@ namespace Schedule_Planner
             // lblFall
             // 
             this.lblFall.AutoSize = true;
-            this.lblFall.Location = new System.Drawing.Point(39, 50);
+            this.lblFall.Location = new System.Drawing.Point(23, 12);
             this.lblFall.Name = "lblFall";
             this.lblFall.Size = new System.Drawing.Size(23, 13);
             this.lblFall.TabIndex = 22;
             this.lblFall.Text = "Fall";
+            // 
+            // lblWinter
+            // 
+            this.lblWinter.AutoSize = true;
+            this.lblWinter.Location = new System.Drawing.Point(206, 12);
+            this.lblWinter.Name = "lblWinter";
+            this.lblWinter.Size = new System.Drawing.Size(38, 13);
+            this.lblWinter.TabIndex = 24;
+            this.lblWinter.Text = "Winter";
+            // 
+            // lbxWinter
+            // 
+            this.lbxWinter.FormattingEnabled = true;
+            this.lbxWinter.Location = new System.Drawing.Point(250, 12);
+            this.lbxWinter.Name = "lbxWinter";
+            this.lbxWinter.Size = new System.Drawing.Size(120, 95);
+            this.lbxWinter.TabIndex = 23;
+            // 
+            // lblSpring
+            // 
+            this.lblSpring.AutoSize = true;
+            this.lblSpring.Location = new System.Drawing.Point(12, 138);
+            this.lblSpring.Name = "lblSpring";
+            this.lblSpring.Size = new System.Drawing.Size(37, 13);
+            this.lblSpring.TabIndex = 26;
+            this.lblSpring.Text = "Spring";
+            // 
+            // lbxSpring
+            // 
+            this.lbxSpring.FormattingEnabled = true;
+            this.lbxSpring.Location = new System.Drawing.Point(52, 138);
+            this.lbxSpring.Name = "lbxSpring";
+            this.lbxSpring.Size = new System.Drawing.Size(120, 95);
+            this.lbxSpring.TabIndex = 25;
+            // 
+            // lblSummer
+            // 
+            this.lblSummer.AutoSize = true;
+            this.lblSummer.Location = new System.Drawing.Point(199, 138);
+            this.lblSummer.Name = "lblSummer";
+            this.lblSummer.Size = new System.Drawing.Size(45, 13);
+            this.lblSummer.TabIndex = 28;
+            this.lblSummer.Text = "Summer";
+            // 
+            // lbxSummer
+            // 
+            this.lbxSummer.FormattingEnabled = true;
+            this.lbxSummer.Location = new System.Drawing.Point(250, 138);
+            this.lbxSummer.Name = "lbxSummer";
+            this.lbxSummer.Size = new System.Drawing.Size(120, 95);
+            this.lbxSummer.TabIndex = 27;
             // 
             // frmSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.lblSummer);
+            this.Controls.Add(this.lbxSummer);
+            this.Controls.Add(this.lblSpring);
+            this.Controls.Add(this.lbxSpring);
+            this.Controls.Add(this.lblWinter);
+            this.Controls.Add(this.lbxWinter);
             this.Controls.Add(this.lblFall);
             this.Controls.Add(this.lbxFall);
             this.Controls.Add(this.cmdSwitch);
@@ -94,5 +157,11 @@ namespace Schedule_Planner
         private System.Windows.Forms.Button cmdSwitch;
         private System.Windows.Forms.ListBox lbxFall;
         private System.Windows.Forms.Label lblFall;
+        private System.Windows.Forms.Label lblWinter;
+        private System.Windows.Forms.ListBox lbxWinter;
+        private System.Windows.Forms.Label lblSpring;
+        private System.Windows.Forms.ListBox lbxSpring;
+        private System.Windows.Forms.Label lblSummer;
+        private System.Windows.Forms.ListBox lbxSummer;
     }
 }
