@@ -204,6 +204,7 @@ namespace Schedule_Planner
             this.lbxPrereqs.Size = new System.Drawing.Size(177, 121);
             this.lbxPrereqs.Sorted = true;
             this.lbxPrereqs.TabIndex = 0;
+            this.lbxPrereqs.SelectedIndexChanged += new System.EventHandler(this.lbxPrereqs_SelectedIndexChanged);
             // 
             // cmdAddPre
             // 

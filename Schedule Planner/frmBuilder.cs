@@ -101,19 +101,20 @@ namespace Schedule_Planner
             }
         }
 
+        private void   lbxPrereqs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbxPrereqs.SelectedItem != null)
+            {
+                cmsCourseMenu.Items["tsiViewData"].Enabled = true;
+            }
+        }
+
         private void   cmdSwitch_Click(object sender, EventArgs e)
         {
-            // Dirty filthy fucking hacks reeee
-            foreach (Form frm in Application.OpenForms)
-            {
-                if (frm.Name == "frmSchedule")
-                {
-                    frm.Enabled = true;
-                    frm.Visible = true;
-                    break;
-                }
-            }
+            Form frm = Application.OpenForms["frmSchedule"];
 
+            frm.Enabled = true;
+            frm.Visible = true;
             Close();
         }
 
@@ -124,7 +125,16 @@ namespace Schedule_Planner
 
         private void   cmsCourseMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            Course cs = (Course) lbxCList.SelectedItem;
+            Course cs = null;
+
+            if (lbxCList.ContainsFocus)
+            {
+                cs = (Course) lbxCList.SelectedItem;
+            }
+            else if (lbxPrereqs.ContainsFocus)
+            {
+                cs = (Course) lbxPrereqs.SelectedItem;
+            }
 
             if (cs != null)
             {
