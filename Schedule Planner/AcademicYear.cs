@@ -2,6 +2,7 @@ using System;
 
 namespace Schedule_Planner
 {
+    [Serializable]
     class AcademicYear
     {
         public CourseDB Fall   { get; set; }
