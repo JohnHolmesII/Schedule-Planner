@@ -17,7 +17,7 @@ namespace Schedule_Planner
                 mainDB.SaveDB();
             }
 
-            UpdateListBox();
+            mainDB.PopulateListBox(lbxCList);
         }
 
         private void   cmdGo_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Schedule_Planner
 
                 mainDB.Add(id, cs);
                 mainDB.SaveDB();
-                UpdateListBox();
+                mainDB.PopulateListBox(lbxCList);
             }
             catch (Exception ex)
             {
@@ -58,19 +58,7 @@ namespace Schedule_Planner
             {
                 mainDB.Remove(cs.CourseID);
                 mainDB.SaveDB();
-                UpdateListBox();
-            }
-        }
-
-        private void   UpdateListBox()
-        {
-            lbxCList.Items.Clear();
-
-            string[] keys = mainDB.GetKeys();
-
-            for (int i = 0; i < keys.Length; ++i)
-            {
-                lbxCList.Items.Add(mainDB.Get(keys[i]));
+                mainDB.PopulateListBox(lbxCList);
             }
         }
 

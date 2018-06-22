@@ -38,6 +38,11 @@ namespace Schedule_Planner
             this.lbxSpring = new System.Windows.Forms.ListBox();
             this.lblSummer = new System.Windows.Forms.Label();
             this.lbxSummer = new System.Windows.Forms.ListBox();
+            this.rboFall = new System.Windows.Forms.RadioButton();
+            this.rboWinter = new System.Windows.Forms.RadioButton();
+            this.rboSpring = new System.Windows.Forms.RadioButton();
+            this.rboSummer = new System.Windows.Forms.RadioButton();
+            this.cmdAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbxAvailable
@@ -50,6 +55,7 @@ namespace Schedule_Planner
             this.lbxAvailable.Size = new System.Drawing.Size(735, 95);
             this.lbxAvailable.Sorted = true;
             this.lbxAvailable.TabIndex = 0;
+            this.lbxAvailable.SelectedIndexChanged += new System.EventHandler(this.lbxAvailable_SelectedIndexChanged);
             // 
             // cmdSwitch
             // 
@@ -129,11 +135,69 @@ namespace Schedule_Planner
             this.lbxSummer.Size = new System.Drawing.Size(120, 95);
             this.lbxSummer.TabIndex = 27;
             // 
+            // rboFall
+            // 
+            this.rboFall.AutoSize = true;
+            this.rboFall.Checked = true;
+            this.rboFall.Location = new System.Drawing.Point(448, 152);
+            this.rboFall.Name = "rboFall";
+            this.rboFall.Size = new System.Drawing.Size(41, 17);
+            this.rboFall.TabIndex = 29;
+            this.rboFall.TabStop = true;
+            this.rboFall.Text = "Fall";
+            this.rboFall.UseVisualStyleBackColor = true;
+            // 
+            // rboWinter
+            // 
+            this.rboWinter.AutoSize = true;
+            this.rboWinter.Location = new System.Drawing.Point(509, 152);
+            this.rboWinter.Name = "rboWinter";
+            this.rboWinter.Size = new System.Drawing.Size(56, 17);
+            this.rboWinter.TabIndex = 30;
+            this.rboWinter.Text = "Winter";
+            this.rboWinter.UseVisualStyleBackColor = true;
+            // 
+            // rboSpring
+            // 
+            this.rboSpring.AutoSize = true;
+            this.rboSpring.Location = new System.Drawing.Point(448, 185);
+            this.rboSpring.Name = "rboSpring";
+            this.rboSpring.Size = new System.Drawing.Size(55, 17);
+            this.rboSpring.TabIndex = 31;
+            this.rboSpring.Text = "Spring";
+            this.rboSpring.UseVisualStyleBackColor = true;
+            // 
+            // rboSummer
+            // 
+            this.rboSummer.AutoSize = true;
+            this.rboSummer.Location = new System.Drawing.Point(509, 185);
+            this.rboSummer.Name = "rboSummer";
+            this.rboSummer.Size = new System.Drawing.Size(63, 17);
+            this.rboSummer.TabIndex = 32;
+            this.rboSummer.Text = "Summer";
+            this.rboSummer.UseVisualStyleBackColor = true;
+            // 
+            // cmdAdd
+            // 
+            this.cmdAdd.Enabled = false;
+            this.cmdAdd.Location = new System.Drawing.Point(448, 220);
+            this.cmdAdd.Name = "cmdAdd";
+            this.cmdAdd.Size = new System.Drawing.Size(124, 31);
+            this.cmdAdd.TabIndex = 33;
+            this.cmdAdd.Text = "Add Course";
+            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            // 
             // frmSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.cmdAdd);
+            this.Controls.Add(this.rboSummer);
+            this.Controls.Add(this.rboSpring);
+            this.Controls.Add(this.rboWinter);
+            this.Controls.Add(this.rboFall);
             this.Controls.Add(this.lblSummer);
             this.Controls.Add(this.lbxSummer);
             this.Controls.Add(this.lblSpring);
@@ -163,5 +227,10 @@ namespace Schedule_Planner
         private System.Windows.Forms.ListBox lbxSpring;
         private System.Windows.Forms.Label lblSummer;
         private System.Windows.Forms.ListBox lbxSummer;
+        private System.Windows.Forms.RadioButton rboFall;
+        private System.Windows.Forms.RadioButton rboWinter;
+        private System.Windows.Forms.RadioButton rboSpring;
+        private System.Windows.Forms.RadioButton rboSummer;
+        private System.Windows.Forms.Button cmdAdd;
     }
 }

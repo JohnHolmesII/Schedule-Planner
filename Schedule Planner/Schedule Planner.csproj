@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicYear.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="CourseDB.cs" />
     <Compile Include="frmBuilder.cs">

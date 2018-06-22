@@ -128,6 +128,18 @@ namespace Schedule_Planner
             return xxHash.CalculateHash(Encoding.UTF8.GetBytes(key)) % tableSize;
         }
 
+        public  void     PopulateListBox(ListBox lbx)
+        {
+            lbx.Items.Clear();
+
+            string[] keys = GetKeys();
+
+            for (int i = 0; i < keys.Length; ++i)
+            {
+                lbx.Items.Add(Get(keys[i]));
+            }
+        }
+
         public  void     SaveDB()
         {
             try
