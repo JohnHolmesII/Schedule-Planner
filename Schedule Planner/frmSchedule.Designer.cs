@@ -58,7 +58,7 @@ namespace Schedule_Planner
             this.lbxAvailable.SelectedIndexChanged += new System.EventHandler(this.lbxAvailable_SelectedIndexChanged);
             // 
             // cmdSwitch
-            // 
+            //
             this.cmdSwitch.Location = new System.Drawing.Point(655, 12);
             this.cmdSwitch.Name = "cmdSwitch";
             this.cmdSwitch.Size = new System.Drawing.Size(92, 31);
@@ -192,6 +192,7 @@ namespace Schedule_Planner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(759, 364);
             this.Controls.Add(this.cmdAdd);
             this.Controls.Add(this.rboSummer);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Schedule_Planner
 {
     [Serializable]
-    class Course
+    public class Course
     {
         public string       CourseID    { get; }
         public string       Description { get; }

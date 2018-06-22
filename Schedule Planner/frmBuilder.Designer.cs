@@ -28,6 +28,7 @@ namespace Schedule_Planner
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbxCList = new System.Windows.Forms.ListBox();
             this.cmdGo = new System.Windows.Forms.Button();
             this.txtCourseID = new System.Windows.Forms.TextBox();
@@ -43,11 +44,19 @@ namespace Schedule_Planner
             this.gbxAvail = new System.Windows.Forms.GroupBox();
             this.cmdRemove = new System.Windows.Forms.Button();
             this.cmdSwitch = new System.Windows.Forms.Button();
+            this.lbxPrereqs = new System.Windows.Forms.ListBox();
+            this.cmdAddPre = new System.Windows.Forms.Button();
+            this.cmdRemPre = new System.Windows.Forms.Button();
+            this.lblPrereqs = new System.Windows.Forms.Label();
+            this.cmsCourseMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsiViewData = new System.Windows.Forms.ToolStripMenuItem();
             this.gbxAvail.SuspendLayout();
+            this.cmsCourseMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbxCList
             // 
+            this.lbxCList.ContextMenuStrip = this.cmsCourseMenu;
             this.lbxCList.FormattingEnabled = true;
             this.lbxCList.Location = new System.Drawing.Point(330, 12);
             this.lbxCList.Name = "lbxCList";
@@ -160,7 +169,7 @@ namespace Schedule_Planner
             this.gbxAvail.Controls.Add(this.cbxSummer);
             this.gbxAvail.Controls.Add(this.cbxSpring);
             this.gbxAvail.Controls.Add(this.cbxWinter);
-            this.gbxAvail.Location = new System.Drawing.Point(15, 141);
+            this.gbxAvail.Location = new System.Drawing.Point(15, 125);
             this.gbxAvail.Name = "gbxAvail";
             this.gbxAvail.Size = new System.Drawing.Size(174, 83);
             this.gbxAvail.TabIndex = 17;
@@ -188,11 +197,69 @@ namespace Schedule_Planner
             this.cmdSwitch.UseVisualStyleBackColor = true;
             this.cmdSwitch.Click += new System.EventHandler(this.cmdSwitch_Click);
             // 
+            // lbxPrereqs
+            // 
+            this.lbxPrereqs.Location = new System.Drawing.Point(12, 231);
+            this.lbxPrereqs.Name = "lbxPrereqs";
+            this.lbxPrereqs.Size = new System.Drawing.Size(177, 121);
+            this.lbxPrereqs.Sorted = true;
+            this.lbxPrereqs.TabIndex = 0;
+            // 
+            // cmdAddPre
+            // 
+            this.cmdAddPre.Enabled = false;
+            this.cmdAddPre.Location = new System.Drawing.Point(195, 154);
+            this.cmdAddPre.Name = "cmdAddPre";
+            this.cmdAddPre.Size = new System.Drawing.Size(129, 24);
+            this.cmdAddPre.TabIndex = 20;
+            this.cmdAddPre.Text = "Add Prereq";
+            this.cmdAddPre.UseVisualStyleBackColor = true;
+            this.cmdAddPre.Click += new System.EventHandler(this.cmdAddPre_Click);
+            // 
+            // cmdRemPre
+            // 
+            this.cmdRemPre.Enabled = false;
+            this.cmdRemPre.Location = new System.Drawing.Point(195, 184);
+            this.cmdRemPre.Name = "cmdRemPre";
+            this.cmdRemPre.Size = new System.Drawing.Size(129, 24);
+            this.cmdRemPre.TabIndex = 21;
+            this.cmdRemPre.Text = "Remove Prereq";
+            this.cmdRemPre.UseVisualStyleBackColor = true;
+            // 
+            // lblPrereqs
+            // 
+            this.lblPrereqs.AutoSize = true;
+            this.lblPrereqs.Location = new System.Drawing.Point(9, 215);
+            this.lblPrereqs.Name = "lblPrereqs";
+            this.lblPrereqs.Size = new System.Drawing.Size(67, 13);
+            this.lblPrereqs.TabIndex = 22;
+            this.lblPrereqs.Text = "Prerequisites";
+            // 
+            // cmsCourseMenu
+            // 
+            this.cmsCourseMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsiViewData});
+            this.cmsCourseMenu.Name = "contextMenuStrip1";
+            this.cmsCourseMenu.Size = new System.Drawing.Size(167, 26);
+            this.cmsCourseMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCourseMenu_ItemClicked);
+            // 
+            // tsiViewData
+            // 
+            this.tsiViewData.Enabled = false;
+            this.tsiViewData.Name = "tsiViewData";
+            this.tsiViewData.Size = new System.Drawing.Size(180, 22);
+            this.tsiViewData.Text = "View Course Data";
+            // 
             // frmBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.lblPrereqs);
+            this.Controls.Add(this.cmdRemPre);
+            this.Controls.Add(this.cmdAddPre);
+            this.Controls.Add(this.lbxPrereqs);
             this.Controls.Add(this.cmdSwitch);
             this.Controls.Add(this.cmdRemove);
             this.Controls.Add(this.gbxAvail);
@@ -209,6 +276,7 @@ namespace Schedule_Planner
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmBuilder_FormClosed);
             this.gbxAvail.ResumeLayout(false);
             this.gbxAvail.PerformLayout();
+            this.cmsCourseMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,6 +299,12 @@ namespace Schedule_Planner
         private System.Windows.Forms.GroupBox gbxAvail;
         private System.Windows.Forms.Button cmdRemove;
         private System.Windows.Forms.Button cmdSwitch;
+        private System.Windows.Forms.ListBox lbxPrereqs;
+        private System.Windows.Forms.Button cmdAddPre;
+        private System.Windows.Forms.Button cmdRemPre;
+        private System.Windows.Forms.Label lblPrereqs;
+        private System.Windows.Forms.ContextMenuStrip cmsCourseMenu;
+        private System.Windows.Forms.ToolStripMenuItem tsiViewData;
     }
 }
 

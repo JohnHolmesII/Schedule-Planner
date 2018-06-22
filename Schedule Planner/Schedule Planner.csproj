@@ -57,6 +57,12 @@
     <Compile Include="frmBuilder.Designer.cs">
       <DependentUpon>frmBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCourse.Designer.cs">
+      <DependentUpon>frmCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="xxHash.cs" />
     <EmbeddedResource Include="frmBuilder.resx">
       <DependentUpon>frmBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCourse.resx">
+      <DependentUpon>frmCourse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSchedule.resx">
       <DependentUpon>frmSchedule.cs</DependentUpon>

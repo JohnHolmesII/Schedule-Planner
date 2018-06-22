@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Schedule_Planner
@@ -24,11 +25,17 @@ namespace Schedule_Planner
         {
             try
             {
-                string id    = GetString(txtCourseID);
-                string name  = GetString(txtCourseName);
-                byte   units = 0;
+                string       id      = GetString(txtCourseID);
+                string       name    = GetString(txtCourseName);
+                byte         units   = 0;
+                List<Course> prereqs = new List<Course>();
 
                 if (!Byte.TryParse(GetString(txtCourseUnits), out units)) units = 0;
+
+                foreach (object course in lbxPrereqs.Items)
+                {
+                    prereqs.Add((Course) course);
+                }
 
                 Course cs = new Course(id,
                                        name,
@@ -37,7 +44,7 @@ namespace Schedule_Planner
                                        cbxWinter.Checked,
                                        cbxSpring.Checked,
                                        cbxSummer.Checked,
-                                       null,
+                                       prereqs,
                                        null);
 
                 mainDB.Add(id, cs);
@@ -46,7 +53,7 @@ namespace Schedule_Planner
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(String.Format("Error creating course. {0}", ex.Message));
             }
         }
 
@@ -59,6 +66,16 @@ namespace Schedule_Planner
                 mainDB.Remove(cs.CourseID);
                 mainDB.SaveDB();
                 mainDB.PopulateListBox(lbxCList);
+            }
+        }
+
+        private void   cmdAddPre_Click(object sender, EventArgs e)
+        {
+            Course cs = (Course) lbxCList.SelectedItem;
+
+            if (cs != null)
+            {
+                lbxPrereqs.Items.Add(cs);
             }
         }
 
@@ -76,7 +93,12 @@ namespace Schedule_Planner
 
         private void   lbxCList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmdRemove.Enabled = true;
+            if (lbxCList.SelectedItem != null)
+            {
+                cmdRemove.Enabled                          = true;
+                cmdAddPre.Enabled                          = true;
+                cmsCourseMenu.Items["tsiViewData"].Enabled = true;
+            }
         }
 
         private void   cmdSwitch_Click(object sender, EventArgs e)
@@ -98,6 +120,16 @@ namespace Schedule_Planner
         private void   frmBuilder_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void   cmsCourseMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Course cs = (Course) lbxCList.SelectedItem;
+
+            if (cs != null)
+            {
+                (new frmCourse(cs)).ShowDialog();
+            }
         }
     }
 }
