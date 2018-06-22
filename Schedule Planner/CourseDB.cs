@@ -94,43 +94,6 @@ namespace Schedule_Planner
             return tmp;
         }
 
-        public  void     SaveDB()
-        {
-            try
-            {
-                IFormatter formatter = new BinaryFormatter();
-                Stream     fs        = new FileStream("courses.db", FileMode.Create);
-
-                formatter.Serialize(fs, this);
-                fs.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error saving. " + e.Message);
-            }
-        }
-
-        static
-        public  CourseDB LoadDB()
-        {
-            CourseDB tmp = null;
-
-            try
-            {
-                IFormatter formatter = new BinaryFormatter();
-                Stream     fs        = new FileStream("courses.db", FileMode.Open);
-
-                tmp = (CourseDB) formatter.Deserialize(fs);
-                fs.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("LoadDB(): error loading. " + e.Message);
-            }
-
-            return tmp;
-        }
-
         public  string[] GetKeys()
         {
             string[]  tmp    = new string[Size];
@@ -163,6 +126,43 @@ namespace Schedule_Planner
         private uint     GetIndex(string key)
         {
             return xxHash.CalculateHash(Encoding.UTF8.GetBytes(key)) % tableSize;
+        }
+
+        public  void     SaveDB()
+        {
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream     fs        = new FileStream("courses.db", FileMode.Create);
+
+                formatter.Serialize(fs, this);
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error saving. " + e.Message);
+            }
+        }
+
+        static
+        public  CourseDB LoadDB()
+        {
+            CourseDB tmp = null;
+
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream     fs        = new FileStream("courses.db", FileMode.Open);
+
+                tmp = (CourseDB)formatter.Deserialize(fs);
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("LoadDB(): error loading. " + e.Message);
+            }
+
+            return tmp;
         }
 
         [Serializable]

@@ -29,9 +29,11 @@ namespace Schedule_Planner
             this.Coreqs = c;
         }
 
-        public string  Availability()
+        public  string Availability()
         {
             string s = "";
+
+            if (!(Fall || Winter || Spring || Summer)) return "None";
 
             if (Fall) s += "Fall ";
             if (Winter) s += "Winter ";
@@ -61,7 +63,7 @@ namespace Schedule_Planner
         }
 
         override
-        public string  ToString()
+        public  string ToString()
         {
             return String.Format("{0}: {1}, {2} Units, Available: {3}", CourseID, Description, Units, Availability());
         }

@@ -52,6 +52,7 @@ namespace Schedule_Planner
             this.lbxCList.Location = new System.Drawing.Point(330, 12);
             this.lbxCList.Name = "lbxCList";
             this.lbxCList.Size = new System.Drawing.Size(417, 212);
+            this.lbxCList.Sorted = true;
             this.lbxCList.TabIndex = 0;
             this.lbxCList.SelectedIndexChanged += new System.EventHandler(this.lbxCList_SelectedIndexChanged);
             // 
@@ -205,6 +206,7 @@ namespace Schedule_Planner
             this.Controls.Add(this.lbxCList);
             this.Name = "frmBuilder";
             this.Text = "Course Builder";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmBuilder_FormClosed);
             this.gbxAvail.ResumeLayout(false);
             this.gbxAvail.PerformLayout();
             this.ResumeLayout(false);

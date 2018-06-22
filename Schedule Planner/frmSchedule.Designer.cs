@@ -30,14 +30,19 @@ namespace Schedule_Planner
         {
             this.lbxAvailable = new System.Windows.Forms.ListBox();
             this.cmdSwitch = new System.Windows.Forms.Button();
+            this.lbxFall = new System.Windows.Forms.ListBox();
+            this.lblFall = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxAvailable
             // 
+            this.lbxAvailable.ColumnWidth = 350;
             this.lbxAvailable.FormattingEnabled = true;
             this.lbxAvailable.Location = new System.Drawing.Point(12, 257);
+            this.lbxAvailable.MultiColumn = true;
             this.lbxAvailable.Name = "lbxAvailable";
             this.lbxAvailable.Size = new System.Drawing.Size(735, 95);
+            this.lbxAvailable.Sorted = true;
             this.lbxAvailable.TabIndex = 0;
             // 
             // cmdSwitch
@@ -50,16 +55,36 @@ namespace Schedule_Planner
             this.cmdSwitch.UseVisualStyleBackColor = true;
             this.cmdSwitch.Click += new System.EventHandler(this.cmdSwitch_Click);
             // 
+            // lbxFall
+            // 
+            this.lbxFall.FormattingEnabled = true;
+            this.lbxFall.Location = new System.Drawing.Point(80, 50);
+            this.lbxFall.Name = "lbxFall";
+            this.lbxFall.Size = new System.Drawing.Size(120, 95);
+            this.lbxFall.TabIndex = 21;
+            // 
+            // lblFall
+            // 
+            this.lblFall.AutoSize = true;
+            this.lblFall.Location = new System.Drawing.Point(39, 50);
+            this.lblFall.Name = "lblFall";
+            this.lblFall.Size = new System.Drawing.Size(23, 13);
+            this.lblFall.TabIndex = 22;
+            this.lblFall.Text = "Fall";
+            // 
             // frmSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 364);
+            this.Controls.Add(this.lblFall);
+            this.Controls.Add(this.lbxFall);
             this.Controls.Add(this.cmdSwitch);
             this.Controls.Add(this.lbxAvailable);
             this.Name = "frmSchedule";
             this.Text = "Schedule Planner";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -67,5 +92,7 @@ namespace Schedule_Planner
 
         private System.Windows.Forms.ListBox lbxAvailable;
         private System.Windows.Forms.Button cmdSwitch;
+        private System.Windows.Forms.ListBox lbxFall;
+        private System.Windows.Forms.Label lblFall;
     }
 }

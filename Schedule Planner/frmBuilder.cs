@@ -20,7 +20,7 @@ namespace Schedule_Planner
             UpdateListBox();
         }
 
-        private void     cmdGo_Click(object sender, EventArgs e)
+        private void   cmdGo_Click(object sender, EventArgs e)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Schedule_Planner
             }
         }
 
-        private void     cmdRemove_Click(object sender, EventArgs e)
+        private void   cmdRemove_Click(object sender, EventArgs e)
         {
             Course cs = (Course) lbxCList.SelectedItem;
 
@@ -62,7 +62,7 @@ namespace Schedule_Planner
             }
         }
 
-        private void     UpdateListBox()
+        private void   UpdateListBox()
         {
             lbxCList.Items.Clear();
 
@@ -74,7 +74,7 @@ namespace Schedule_Planner
             }
         }
 
-        private string   GetString(TextBox txt)
+        private string GetString(TextBox txt)
         {
             string id = txt.Text.Trim();
 
@@ -86,12 +86,12 @@ namespace Schedule_Planner
             return id;
         }
 
-        private void     lbxCList_SelectedIndexChanged(object sender, EventArgs e)
+        private void   lbxCList_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmdRemove.Enabled = true;
         }
 
-        private void cmdSwitch_Click(object sender, EventArgs e)
+        private void   cmdSwitch_Click(object sender, EventArgs e)
         {
             // Dirty filthy fucking hacks reeee
             foreach (Form frm in Application.OpenForms)
@@ -105,6 +105,11 @@ namespace Schedule_Planner
             }
 
             Close();
+        }
+
+        private void   frmBuilder_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
