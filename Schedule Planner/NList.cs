@@ -3,12 +3,12 @@ using System;
 namespace Schedule_Planner
 {
     [Serializable]
-    class NakedList
+    class NList
     {
         public  uint Size { get; private set; }
         private Node Head;
 
-        public NakedList()
+        public NList()
         {
             Size = 0;
             Head = null;

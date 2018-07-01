@@ -13,13 +13,13 @@ namespace Schedule_Planner
     {
         public  uint        Size { get; private set; }
         private uint        tableSize;
-        private NakedList[] table;
+        private NList[] table;
 
         public CourseDB(uint rTSize)
         {
             Size      = 0;
             tableSize = rTSize;
-            table     = new NakedList[tableSize];
+            table     = new NList[tableSize];
         }
 
         public  void     Add(string key, Course value)
@@ -28,7 +28,7 @@ namespace Schedule_Planner
 
             if (table[index] == null)
             {
-                NakedList tmp = new NakedList();
+                NList tmp = new NList();
                 tmp.Add(new Entry(key, value));
                 table[index] = tmp;
                 ++Size;
@@ -98,7 +98,7 @@ namespace Schedule_Planner
         {
             string[]  tmp    = new string[Size];
             int       index  = 0;
-            NakedList bucket = null;
+            NList bucket = null;
 
             for (int i = 0; i < tableSize; ++i)
             {

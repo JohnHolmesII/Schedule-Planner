@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Schedule_Planner
 {
@@ -55,6 +56,26 @@ namespace Schedule_Planner
             {
                 currYear.Summer.Add(cs.CourseID, cs);
                 currYear.Summer.PopulateListBox(lbxSummer);
+            }
+        }
+
+        private void AddCourse(Course course, CourseDB term)
+        {
+            foreach (AcademicYear ay in plan)
+            {
+                Course[] prqs = new Course[course.Prereqs.Count];
+                course.Prereqs.CopyTo(prqs);
+                
+                foreach (Course cs in prqs)
+                {
+                    if (ay.Fall.ContainsKey(cs.CourseID)   ||
+                        ay.Winter.ContainsKey(cs.CourseID) ||
+                        ay.Spring.ContainsKey(cs.CourseID) ||
+                        ay.Summer.ContainsKey(cs.CourseID))
+                    {
+                        prqs.0
+                    }
+                }
             }
         }
 
