@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Contracts;
 using System.Text;
 
 namespace Schedule_Planner
@@ -15,24 +16,23 @@ namespace Schedule_Planner
         // Special property accesors
         public int Front()
         {
+            Contract.Requires(Length > 0, "List.Front(): No front");
+
             return FrontN.Data;
         }
 
         public int Back()
         {
+            Contract.Requires(Length > 0, "List.Back(): No back");
+
             return BackN.Data;
         }
 
         public int Get()
         {
-            if (Length > 0 && Index > -1)
-            {
-                return Cursor.Data;
-            }
-            else
-            {
-                throw new Exception("NList.Get(): List empty, or no Cursor");
-            }
+            Contract.Requires(Length > 0 && Index > -1, "NList.Get(): List empty, or no Cursor");
+
+            return Cursor.Data;
         }
 
         // Constructor
@@ -97,7 +97,7 @@ namespace Schedule_Planner
             else if (Cursor == FrontN)
             {
                 Cursor = null;
-                Index = -1;
+                Index  = -1;
             }
         }
 
@@ -139,107 +139,77 @@ namespace Schedule_Planner
 
         public void InsertBefore(int Data)
         {
-            // Pre: Length > 0; index > -1
-            if (Length > 0 && Index > -1)
-            {
-                Node tmp = new Node(Data, Cursor.Prev, Cursor);
+            Contract.Requires(Length > 0 && Index > -1, "List.InsertBefore(): List or Cursor not initialized");
 
-                if (Index != 0) // Middle of the list
-                {
-                    Cursor.Prev.Next = tmp;
-                    Cursor.Prev      = tmp;
-                    ++Length;
-                }
-                else            // Front of the list
-                {
-                    Prepend(Data);
-                }
-            }
-            else
+            Node tmp = new Node(Data, Cursor.Prev, Cursor);
+
+            if (Index != 0) // Middle of the list
             {
-                throw new Exception("List.insertBefore(): List or Cursor not initialized");
+                Cursor.Prev.Next = tmp;
+                Cursor.Prev      = tmp;
+                ++Length;
+            }
+            else            // Front of the list
+            {
+                Prepend(Data);
             }
         }
 
         public void InsertAfter(int Data)
         {
-            // Pre: Length > 0; index > -1
-            if (Length > 0 && Index > -1)
-            {
-                Node tmp = new Node(Data, Cursor, Cursor.Next);
+            Contract.Requires(Length > 0 && Index > -1, "List.InsertAfter(): List or Cursor not initialized");
 
-                if (Index != Length - 1) // Middle of the list
-                {
-                    Cursor.Next.Prev = tmp;
-                    Cursor.Next      = tmp;
-                    ++Length;
-                }
-                else
-                {
-                    Append(Data);       // Back of the list
-                }
+            Node tmp = new Node(Data, Cursor, Cursor.Next);
+
+            if (Index != Length - 1) // Middle of the list
+            {
+                Cursor.Next.Prev = tmp;
+                Cursor.Next      = tmp;
+                ++Length;
             }
             else
             {
-                throw new Exception("List.insertAfter(): List or Cursor not initialized");
+                Append(Data);       // Back of the list
             }
         }
 
         public void DeleteFront()
         {
-            // Pre: Length > 0
-            if (Length > 0)
-            {
-                FrontN = FrontN.Next;
-                FrontN.Prev = null;
-                --Length;
-            }
-            else
-            {
-                throw new Exception("List.deleteFront(): No FrontN");
-            }
+            Contract.Requires(Length > 0, "List.DeleteFront(): No Front");
+
+            FrontN      = FrontN.Next;
+            FrontN.Prev = null;
+            --Length;
         }
 
         public void DeleteBack()
         {
-            // Pre: Length > 0
-            if (Length > 0)
-            {
-                BackN = BackN.Prev;
-                BackN.Next = null;
-                --Length;
-            }
-            else
-            {
-                throw new Exception("List.deleteBack(): No BackN");
-            }
+            Contract.Requires(Length > 0, "List.deleteBack(): No Back");
+
+            BackN      = BackN.Prev;
+            BackN.Next = null;
+            --Length;
         }
 
         public void Delete()
         {
-            // Pre: Length > 0; index > -1
-            if (Length > 0 && Index > -1)
+            Contract.Requires(Length > 0 && Index > -1, "List.delete(): List or Cursor not initialized");
+
+            if (Index == 0)
             {
-                if (Index == 0)
-                {
-                    DeleteFront();
-                }
-                else if (Index == Length - 1)
-                {
-                    DeleteBack();
-                }
-                else
-                {
-                    Cursor.Prev.Next = Cursor.Next;
-                    Cursor.Next.Prev = Cursor.Prev;
-                    Cursor           = null;
-                    Index            = -1;
-                    --Length;
-                }
+                DeleteFront();
+            }
+            else if (Index == Length - 1)
+            {
+                DeleteBack();
             }
             else
             {
-                throw new Exception("List.delete(): List or Cursor not initialized");
+                Cursor.Prev.Next = Cursor.Next;
+                Cursor.Next.Prev = Cursor.Prev;
+                Cursor = null;
+                Index  = -1;
+                --Length;
             }
         }
 
@@ -272,17 +242,17 @@ namespace Schedule_Planner
             bool tmp = false;
 
             if (o is NList)
-		{
-                NList L   = (NList) o;
-                Node me   = FrontN;
-                Node them = L.FrontN;
+		    {
+                NList L    = (NList) o;
+                Node  me   = FrontN;
+                Node  them = L.FrontN;
 
                 if ((tmp = Length == L.Length)) // Hidden assignment
                 {
                     while (tmp && me != null)
                     {
-                        tmp = me.Data == them.Data;
-                        me = me.Next;
+                        tmp  = me.Data == them.Data;
+                        me   = me.Next;
                         them = them.Next;
                     }
                 }
