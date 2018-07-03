@@ -14,21 +14,21 @@ namespace Schedule_Planner
         private Node BackN  { get; set; }
 
         // Special property accesors
-        public int Front()
+        public Object Front()
         {
             Contract.Requires(Length > 0, "List.Front(): No front");
 
             return FrontN.Data;
         }
 
-        public int Back()
+        public Object Back()
         {
             Contract.Requires(Length > 0, "List.Back(): No back");
 
             return BackN.Data;
         }
 
-        public int Get()
+        public Object Get()
         {
             Contract.Requires(Length > 0 && Index > -1, "NList.Get(): List empty, or no Cursor");
 
@@ -101,7 +101,7 @@ namespace Schedule_Planner
             }
         }
 
-        public void Prepend(int Data)
+        public void Prepend(Object Data)
         {
             Node tmp = new Node(Data, null, FrontN);
 
@@ -119,7 +119,7 @@ namespace Schedule_Planner
             ++Length;
         }
 
-        public void Append(int Data)
+        public void Append(Object Data)
         {
             Node tmp = new Node(Data, BackN, null);
 
@@ -137,7 +137,7 @@ namespace Schedule_Planner
             ++Length;
         }
 
-        public void InsertBefore(int Data)
+        public void InsertBefore(Object Data)
         {
             Contract.Requires(Length > 0 && Index > -1, "List.InsertBefore(): List or Cursor not initialized");
 
@@ -155,7 +155,7 @@ namespace Schedule_Planner
             }
         }
 
-        public void InsertAfter(int Data)
+        public void InsertAfter(Object Data)
         {
             Contract.Requires(Length > 0 && Index > -1, "List.InsertAfter(): List or Cursor not initialized");
 
@@ -292,18 +292,19 @@ namespace Schedule_Planner
         // Inner class wrapper
         public class Node
         {
-            public int  Data { get; set; }
-            public Node Prev { get; set; }
-            public Node Next { get; set; }
+            public Object Data { get; set; }
+            public Node   Prev { get; set; }
+            public Node   Next { get; set; }
 
-            public Node(int d, Node p, Node n)
+            public Node(Object d, Node p, Node n)
             {
                 Data = d;
                 Prev = p;
                 Next = n;
             }
 
-            public String toString()
+            override
+            public String ToString()
             {
                 String p = "N";
                 String n = "N";
@@ -311,7 +312,7 @@ namespace Schedule_Planner
                 if (Prev != null) p = Prev.Data.ToString();
                 if (Next != null) n = Next.Data.ToString();
 
-                return String.Format("%-2s<> %-2d<> %-2s", p, Data, n).Trim();
+                return String.Format("%-2s<> %-2s<> %-2s", p, Data, n).Trim();
             }
         }
     }
