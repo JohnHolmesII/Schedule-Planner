@@ -61,20 +61,61 @@ namespace Schedule_Planner
 
         private void AddCourse(Course course, CourseDB term)
         {
-            foreach (AcademicYear ay in plan)
+            NList        iter = course.Prereqs.Copy();
+            AcademicYear ay;
+            Course       cs;
+            bool         found;
+
+            // Check previous years for prereqs
+            for (int i = 0; i < yearIndex; ++i)
             {
-                NList  iter = course.Prereqs;
-                Course cs;
+                ay = plan[i];
+
                 for (iter.MoveFront(); iter.Index >= 0; iter.MoveNext())
                 {
-                    cs = (Course) iter.Get();
-                    bool found = ay.Fall.ContainsKey(cs.CourseID) || ay.Winter.ContainsKey(cs.CourseID) || ay.Spring.ContainsKey(cs.CourseID) || ay.Summer.ContainsKey(cs.CourseID);
+                    cs    = (Course) iter.Get();
+                    found = ay.Fall.ContainsKey(cs.CourseID) || ay.Winter.ContainsKey(cs.CourseID) || ay.Spring.ContainsKey(cs.CourseID) || ay.Summer.ContainsKey(cs.CourseID);
 
                     if (found)
                     {
-                        prqs.0;
+                        iter.Delete();
                     }
                 }
+            }
+
+            // Check current year for prereqs
+            ay = plan[yearIndex];
+            for (iter.MoveFront(); iter.Index >= 0; iter.MoveNext())
+            {
+                cs = (Course) iter.Get();
+
+                if (term == ay.Winter)
+                {
+                    found = ay.Fall.ContainsKey(cs.CourseID);
+                }
+                else if (term == ay.Spring)
+                {
+                    found = ay.Winter.ContainsKey(cs.CourseID) || ay.Fall.ContainsKey(cs.CourseID);
+                }
+                else if (term == ay.Summer)
+                {
+                    found = ay.Spring.ContainsKey(cs.CourseID) || ay.Winter.ContainsKey(cs.CourseID) || ay.Fall.ContainsKey(cs.CourseID);
+                }
+                else
+                {
+                    found = false;
+                }
+
+                if (found)
+                {
+                    iter.Delete();
+                }
+
+            }
+
+            if (iter.Length > 0)
+            {
+                term.Add(course.CourseID, course);
             }
         }
 
