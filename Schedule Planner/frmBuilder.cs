@@ -25,16 +25,16 @@ namespace Schedule_Planner
         {
             try
             {
-                string       id      = GetString(txtCourseID);
-                string       name    = GetString(txtCourseName);
-                byte         units   = 0;
-                List<Course> prereqs = new List<Course>();
+                string id      = GetString(txtCourseID);
+                string name    = GetString(txtCourseName);
+                byte   units   = 0;
+                NList  prereqs = new NList();
 
                 if (!Byte.TryParse(GetString(txtCourseUnits), out units)) units = 0;
 
                 foreach (object course in lbxPrereqs.Items)
                 {
-                    prereqs.Add((Course) course);
+                    prereqs.Append((Course) course);
                 }
 
                 Course cs = new Course(id,

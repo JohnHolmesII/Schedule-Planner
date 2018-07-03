@@ -6,27 +6,27 @@ namespace Schedule_Planner
     [Serializable]
     public class Course
     {
-        public string       CourseID    { get; }
-        public string       Description { get; }
-        public byte         Units       { get; }
-        public bool         Fall        { get; }
-        public bool         Winter      { get; }
-        public bool         Spring      { get; }
-        public bool         Summer      { get; }
-        public List<Course> Prereqs     { get; }
-        public List<Course> Coreqs      { get; }
+        public string CourseID    { get; }
+        public string Description { get; }
+        public byte   Units       { get; }
+        public bool   Fall        { get; }
+        public bool   Winter      { get; }
+        public bool   Spring      { get; }
+        public bool   Summer      { get; }
+        public NList  Prereqs     { get; }
+        public NList  Coreqs      { get; }
 
-        public Course(string id, string desc, byte units, bool f, bool w, bool s, bool u, List<Course> p, List<Course> c)
+        public Course(string id, string desc, byte units, bool f, bool w, bool s, bool u, NList p, NList c)
         {
-            this.CourseID = id;
-            this.Description = desc;
-            this.Units = units;
-            this.Fall = f;
-            this.Winter = w;
-            this.Spring = s;
-            this.Summer = u;
-            this.Prereqs = p;
-            this.Coreqs = c;
+            CourseID    = id;
+            Description = desc;
+            Units       = units;
+            Fall        = f;
+            Winter      = w;
+            Spring      = s;
+            Summer      = u;
+            Prereqs     = p;
+            Coreqs      = c;
         }
 
         public  string Availability()
@@ -35,7 +35,7 @@ namespace Schedule_Planner
 
             if (!(Fall || Winter || Spring || Summer)) return "None";
 
-            if (Fall) s += "Fall ";
+            if (Fall)   s += "Fall ";
             if (Winter) s += "Winter ";
             if (Spring) s += "Spring ";
             if (Summer) s += "Summer";

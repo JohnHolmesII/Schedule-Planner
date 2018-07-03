@@ -5,7 +5,7 @@ using System.Text;
 namespace Schedule_Planner
 {
     [Serializable]
-    class NList
+    public class NList
     {
         public int   Length { get; private set; }
         public int   Index  { get; private set; }

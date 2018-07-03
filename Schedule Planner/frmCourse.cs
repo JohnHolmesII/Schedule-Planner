@@ -22,11 +22,12 @@ namespace Schedule_Planner
             cbxSpring.Checked = course.Spring;
             cbxSummer.Checked = course.Summer;
 
-            if (course.Prereqs != null && course.Prereqs.Count > 0)
+            if (course.Prereqs != null && course.Prereqs.Length > 0)
             {
-                foreach (Course cs in course.Prereqs)
+                NList iter = course.Prereqs;
+                for (iter.MoveFront(); iter.Index >= 0; iter.MoveNext())
                 {
-                    lbxPre.Items.Add(cs);
+                    lbxPre.Items.Add(iter);
                 }
             }
             else
@@ -34,11 +35,12 @@ namespace Schedule_Planner
                 lbxPre.Items.Add("None");
             }
 
-            if (course.Coreqs != null && course.Coreqs.Count > 0)
+            if (course.Coreqs != null && course.Coreqs.Length > 0)
             {
-                foreach (Course cs in course.Coreqs)
+                NList iter = course.Coreqs;
+                for (iter.MoveFront(); iter.Index >= 0; iter.MoveNext())
                 {
-                    lbxCo.Items.Add(cs);
+                    lbxCo.Items.Add(iter);
                 }
             }
             else

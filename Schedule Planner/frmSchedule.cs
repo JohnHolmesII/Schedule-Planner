@@ -63,17 +63,16 @@ namespace Schedule_Planner
         {
             foreach (AcademicYear ay in plan)
             {
-                Course[] prqs = new Course[course.Prereqs.Count];
-                course.Prereqs.CopyTo(prqs);
-
-                foreach (Course cs in prqs)
+                NList  iter = course.Prereqs;
+                Course cs;
+                for (iter.MoveFront(); iter.Index >= 0; iter.MoveNext())
                 {
-                    if (ay.Fall.ContainsKey(cs.CourseID)   ||
-                        ay.Winter.ContainsKey(cs.CourseID) ||
-                        ay.Spring.ContainsKey(cs.CourseID) ||
-                        ay.Summer.ContainsKey(cs.CourseID))
+                    cs = (Course) iter.Get();
+                    bool found = ay.Fall.ContainsKey(cs.CourseID) || ay.Winter.ContainsKey(cs.CourseID) || ay.Spring.ContainsKey(cs.CourseID) || ay.Summer.ContainsKey(cs.CourseID);
+
+                    if (found)
                     {
-                        prqs.0
+                        prqs.0;
                     }
                 }
             }
