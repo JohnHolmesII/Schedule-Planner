@@ -242,7 +242,7 @@ namespace Schedule_Planner
             bool tmp = false;
 
             if (o is NList)
-		    {
+            {
                 NList L    = (NList) o;
                 Node  me   = FrontN;
                 Node  them = L.FrontN;
