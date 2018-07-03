@@ -46,13 +46,28 @@ namespace Schedule_Planner
         }
 
         // Data manipulation
-        public void Clear()
+        public void Flush()
         {
             Length = 0;
             Index  = -1;
             Cursor = null;
             FrontN = null;
             BackN  = null;
+        }
+
+        public int  Contains(string key)
+        {
+            int tmp = -1;
+
+            Node curr = FrontN;
+
+            while (curr != null && !((CourseDB.Entry) curr.Data).Key.Equals(key))
+            {
+                curr = curr.Next;
+                ++tmp;
+            }
+
+            return tmp;
         }
 
         public void MoveFront()

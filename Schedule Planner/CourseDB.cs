@@ -29,18 +29,19 @@ namespace Schedule_Planner
             if (table[index] == null)
             {
                 NList tmp = new NList();
-                tmp.Add(new Entry(key, value));
+                tmp.Append(new Entry(key, value));
                 table[index] = tmp;
                 ++Size;
             }
             else
             {
                 Entry tmp;
-                uint  workingSize = table[index].Size;
+                NList bucket      = table[index];
+                int   workingSize = bucket.Length;
 
-                for (int i = 0; i < workingSize; ++i)
+                for (bucket.MoveFront(); bucket.Index >= 0; bucket.MoveNext())
                 {
-                    tmp = (Entry) table[index].Get(i);
+                    tmp = (Entry) bucket.Get();
 
                     if (tmp.Key == key)
                     {
@@ -49,19 +50,21 @@ namespace Schedule_Planner
                     }
                 }
 
-                table[index].Add(new Entry(key, value));
+                bucket.Append(new Entry(key, value));
                 ++Size;
             }
         }
 
         public  Course   Get(string key)
         {
-            Course tmp   = null;
-            uint   index = GetIndex(key);
 
-            for (int i = 0; i < table[index].Size; ++i)
+            uint   index  = GetIndex(key);
+            Course tmp    = null;
+            NList  bucket = table[index];
+
+            for (bucket.MoveFront(); bucket.Index >= 0; bucket.MoveNext())
             {
-                Entry entry = (Entry) table[index].Get(i);
+                Entry entry = (Entry) bucket.Get();
 
                 if (entry.Value.CourseID.Equals(key))
                 {
@@ -75,16 +78,17 @@ namespace Schedule_Planner
 
         public  bool     Remove(string key)
         {
-            bool tmp   = false;
-            uint index = GetIndex(key);
+            bool  tmp    = false;
+            uint  index  = GetIndex(key);
+            NList bucket = table[index];
 
-            for (int i = 0; i < table[index].Size; ++i)
+            for (bucket.MoveFront(); bucket.Index >= 0; bucket.MoveNext())
             {
-                Entry entry = (Entry)table[index].Get(i);
+                Entry entry = (Entry) bucket.Get();
 
                 if (entry.Value.CourseID.Equals(key))
                 {
-                    table[index].Remove(i);
+                    bucket.Delete();
                     tmp = true;
                     --Size;
                     break;
@@ -98,15 +102,15 @@ namespace Schedule_Planner
         {
             string[]  tmp    = new string[Size];
             int       index  = 0;
-            NList bucket = null;
+            NList     bucket = null;
 
             for (int i = 0; i < tableSize; ++i)
             {
                 if ((bucket = table[i]) != null)
                 {
-                    for (int j = 0; j < bucket.Size; ++j)
+                    for (bucket.MoveFront(); bucket.Index >= 0; bucket.MoveNext())
                     {
-                        Entry entry = (Entry) bucket.Get(j);
+                        Entry entry = (Entry) bucket.Get();
                         tmp[index]  = entry.Value.CourseID;
                         ++index;
                     }
@@ -120,7 +124,7 @@ namespace Schedule_Planner
         {
             uint keyHash = xxHashSharp.xxHash.CalculateHash(Encoding.UTF8.GetBytes(key));
 
-            return table[keyHash].Contains(key) > 0;
+            return table[keyHash].Contains(key) >= 0;
         }
 
         private uint     GetIndex(string key)
