@@ -65,7 +65,7 @@ namespace Schedule_Planner
             {
                 Course[] prqs = new Course[course.Prereqs.Count];
                 course.Prereqs.CopyTo(prqs);
-                
+
                 foreach (Course cs in prqs)
                 {
                     if (ay.Fall.ContainsKey(cs.CourseID)   ||

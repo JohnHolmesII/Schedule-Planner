@@ -12,10 +12,10 @@ namespace Schedule_Planner
 
         public AcademicYear()
         {
-            Fall   = new CourseDB(1000);
-            Winter = new CourseDB(1000);
-            Spring = new CourseDB(1000);
-            Summer = new CourseDB(1000);
+            Fall   = new CourseDB(30);
+            Winter = new CourseDB(30);
+            Spring = new CourseDB(30);
+            Summer = new CourseDB(30);
         }
     }
 }

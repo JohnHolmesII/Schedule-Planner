@@ -11,8 +11,8 @@ namespace Schedule_Planner
     [Serializable]
     class CourseDB
     {
-        public  uint        Size { get; private set; }
-        private uint        tableSize;
+        public  uint    Size { get; private set; }
+        private uint    tableSize;
         private NList[] table;
 
         public CourseDB(uint rTSize)
@@ -53,7 +53,7 @@ namespace Schedule_Planner
                 ++Size;
             }
         }
-        
+
         public  Course   Get(string key)
         {
             Course tmp   = null;
