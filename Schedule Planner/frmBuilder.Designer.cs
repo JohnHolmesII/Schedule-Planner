@@ -53,9 +53,9 @@ namespace Schedule_Planner
             this.gbxAvail.SuspendLayout();
             this.cmsCourseMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // lbxCList
-            // 
+            //
             this.lbxCList.ContextMenuStrip = this.cmsCourseMenu;
             this.lbxCList.FormattingEnabled = true;
             this.lbxCList.Location = new System.Drawing.Point(330, 12);
@@ -64,9 +64,9 @@ namespace Schedule_Planner
             this.lbxCList.Sorted = true;
             this.lbxCList.TabIndex = 0;
             this.lbxCList.SelectedIndexChanged += new System.EventHandler(this.lbxCList_SelectedIndexChanged);
-            // 
+            //
             // cmdGo
-            // 
+            //
             this.cmdGo.Location = new System.Drawing.Point(261, 298);
             this.cmdGo.Name = "cmdGo";
             this.cmdGo.Size = new System.Drawing.Size(115, 45);
@@ -74,57 +74,57 @@ namespace Schedule_Planner
             this.cmdGo.Text = "Add Course";
             this.cmdGo.UseVisualStyleBackColor = true;
             this.cmdGo.Click += new System.EventHandler(this.cmdGo_Click);
-            // 
+            //
             // txtCourseID
-            // 
+            //
             this.txtCourseID.Location = new System.Drawing.Point(114, 36);
             this.txtCourseID.Name = "txtCourseID";
             this.txtCourseID.Size = new System.Drawing.Size(179, 20);
             this.txtCourseID.TabIndex = 6;
-            // 
+            //
             // lblCourseID
-            // 
+            //
             this.lblCourseID.AutoSize = true;
             this.lblCourseID.Location = new System.Drawing.Point(12, 39);
             this.lblCourseID.Name = "lblCourseID";
             this.lblCourseID.Size = new System.Drawing.Size(54, 13);
             this.lblCourseID.TabIndex = 7;
             this.lblCourseID.Text = "Course ID";
-            // 
+            //
             // lblCourseName
-            // 
+            //
             this.lblCourseName.AutoSize = true;
             this.lblCourseName.Location = new System.Drawing.Point(12, 65);
             this.lblCourseName.Name = "lblCourseName";
             this.lblCourseName.Size = new System.Drawing.Size(71, 13);
             this.lblCourseName.TabIndex = 9;
             this.lblCourseName.Text = "Course Name";
-            // 
+            //
             // txtCourseName
-            // 
+            //
             this.txtCourseName.Location = new System.Drawing.Point(114, 62);
             this.txtCourseName.Name = "txtCourseName";
             this.txtCourseName.Size = new System.Drawing.Size(179, 20);
             this.txtCourseName.TabIndex = 8;
-            // 
+            //
             // lblCourseUnits
-            // 
+            //
             this.lblCourseUnits.AutoSize = true;
             this.lblCourseUnits.Location = new System.Drawing.Point(12, 91);
             this.lblCourseUnits.Name = "lblCourseUnits";
             this.lblCourseUnits.Size = new System.Drawing.Size(31, 13);
             this.lblCourseUnits.TabIndex = 11;
             this.lblCourseUnits.Text = "Units";
-            // 
+            //
             // txtCourseUnits
-            // 
+            //
             this.txtCourseUnits.Location = new System.Drawing.Point(114, 88);
             this.txtCourseUnits.Name = "txtCourseUnits";
             this.txtCourseUnits.Size = new System.Drawing.Size(179, 20);
             this.txtCourseUnits.TabIndex = 10;
-            // 
+            //
             // cbxFall
-            // 
+            //
             this.cbxFall.AutoSize = true;
             this.cbxFall.Location = new System.Drawing.Point(6, 28);
             this.cbxFall.Name = "cbxFall";
@@ -132,9 +132,9 @@ namespace Schedule_Planner
             this.cbxFall.TabIndex = 13;
             this.cbxFall.Text = "Fall";
             this.cbxFall.UseVisualStyleBackColor = true;
-            // 
+            //
             // cbxWinter
-            // 
+            //
             this.cbxWinter.AutoSize = true;
             this.cbxWinter.Location = new System.Drawing.Point(68, 28);
             this.cbxWinter.Name = "cbxWinter";
@@ -142,9 +142,9 @@ namespace Schedule_Planner
             this.cbxWinter.TabIndex = 14;
             this.cbxWinter.Text = "Winter";
             this.cbxWinter.UseVisualStyleBackColor = true;
-            // 
+            //
             // cbxSummer
-            // 
+            //
             this.cbxSummer.AutoSize = true;
             this.cbxSummer.Location = new System.Drawing.Point(68, 51);
             this.cbxSummer.Name = "cbxSummer";
@@ -152,9 +152,9 @@ namespace Schedule_Planner
             this.cbxSummer.TabIndex = 15;
             this.cbxSummer.Text = "Summer";
             this.cbxSummer.UseVisualStyleBackColor = true;
-            // 
+            //
             // cbxSpring
-            // 
+            //
             this.cbxSpring.AutoSize = true;
             this.cbxSpring.Location = new System.Drawing.Point(6, 51);
             this.cbxSpring.Name = "cbxSpring";
@@ -162,9 +162,9 @@ namespace Schedule_Planner
             this.cbxSpring.TabIndex = 16;
             this.cbxSpring.Text = "Spring";
             this.cbxSpring.UseVisualStyleBackColor = true;
-            // 
+            //
             // gbxAvail
-            // 
+            //
             this.gbxAvail.Controls.Add(this.cbxFall);
             this.gbxAvail.Controls.Add(this.cbxSummer);
             this.gbxAvail.Controls.Add(this.cbxSpring);
@@ -175,9 +175,9 @@ namespace Schedule_Planner
             this.gbxAvail.TabIndex = 17;
             this.gbxAvail.TabStop = false;
             this.gbxAvail.Text = "Availability";
-            // 
+            //
             // cmdRemove
-            // 
+            //
             this.cmdRemove.Enabled = false;
             this.cmdRemove.Location = new System.Drawing.Point(382, 298);
             this.cmdRemove.Name = "cmdRemove";
@@ -186,9 +186,9 @@ namespace Schedule_Planner
             this.cmdRemove.Text = "Remove Course";
             this.cmdRemove.UseVisualStyleBackColor = true;
             this.cmdRemove.Click += new System.EventHandler(this.cmdRemove_Click);
-            // 
+            //
             // cmdSwitch
-            // 
+            //
             this.cmdSwitch.Location = new System.Drawing.Point(655, 321);
             this.cmdSwitch.Name = "cmdSwitch";
             this.cmdSwitch.Size = new System.Drawing.Size(92, 31);
@@ -196,18 +196,18 @@ namespace Schedule_Planner
             this.cmdSwitch.Text = "Open Planner";
             this.cmdSwitch.UseVisualStyleBackColor = true;
             this.cmdSwitch.Click += new System.EventHandler(this.cmdSwitch_Click);
-            // 
+            //
             // lbxPrereqs
-            // 
+            //
             this.lbxPrereqs.Location = new System.Drawing.Point(12, 231);
             this.lbxPrereqs.Name = "lbxPrereqs";
             this.lbxPrereqs.Size = new System.Drawing.Size(177, 121);
             this.lbxPrereqs.Sorted = true;
             this.lbxPrereqs.TabIndex = 0;
             this.lbxPrereqs.SelectedIndexChanged += new System.EventHandler(this.lbxPrereqs_SelectedIndexChanged);
-            // 
+            //
             // cmdAddPre
-            // 
+            //
             this.cmdAddPre.Enabled = false;
             this.cmdAddPre.Location = new System.Drawing.Point(195, 154);
             this.cmdAddPre.Name = "cmdAddPre";
@@ -216,9 +216,9 @@ namespace Schedule_Planner
             this.cmdAddPre.Text = "Add Prereq";
             this.cmdAddPre.UseVisualStyleBackColor = true;
             this.cmdAddPre.Click += new System.EventHandler(this.cmdAddPre_Click);
-            // 
+            //
             // cmdRemPre
-            // 
+            //
             this.cmdRemPre.Enabled = false;
             this.cmdRemPre.Location = new System.Drawing.Point(195, 184);
             this.cmdRemPre.Name = "cmdRemPre";
@@ -226,33 +226,33 @@ namespace Schedule_Planner
             this.cmdRemPre.TabIndex = 21;
             this.cmdRemPre.Text = "Remove Prereq";
             this.cmdRemPre.UseVisualStyleBackColor = true;
-            // 
+            //
             // lblPrereqs
-            // 
+            //
             this.lblPrereqs.AutoSize = true;
             this.lblPrereqs.Location = new System.Drawing.Point(9, 215);
             this.lblPrereqs.Name = "lblPrereqs";
             this.lblPrereqs.Size = new System.Drawing.Size(67, 13);
             this.lblPrereqs.TabIndex = 22;
             this.lblPrereqs.Text = "Prerequisites";
-            // 
+            //
             // cmsCourseMenu
-            // 
+            //
             this.cmsCourseMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsiViewData});
             this.cmsCourseMenu.Name = "contextMenuStrip1";
             this.cmsCourseMenu.Size = new System.Drawing.Size(167, 26);
             this.cmsCourseMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCourseMenu_ItemClicked);
-            // 
+            //
             // tsiViewData
-            // 
+            //
             this.tsiViewData.Enabled = false;
             this.tsiViewData.Name = "tsiViewData";
             this.tsiViewData.Size = new System.Drawing.Size(180, 22);
             this.tsiViewData.Text = "View Course Data";
-            // 
+            //
             // frmBuilder
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -274,7 +274,6 @@ namespace Schedule_Planner
             this.Controls.Add(this.lbxCList);
             this.Name = "frmBuilder";
             this.Text = "Course Builder";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmBuilder_FormClosed);
             this.gbxAvail.ResumeLayout(false);
             this.gbxAvail.PerformLayout();
             this.cmsCourseMenu.ResumeLayout(false);

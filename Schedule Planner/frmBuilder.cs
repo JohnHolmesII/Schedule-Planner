@@ -118,11 +118,6 @@ namespace Schedule_Planner
             Close();
         }
 
-        private void   frmBuilder_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void   cmsCourseMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Course cs = null;
