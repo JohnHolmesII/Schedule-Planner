@@ -111,10 +111,6 @@ namespace Schedule_Planner
 
         private void   cmdSwitch_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms["frmSchedule"];
-
-            frm.Enabled = true;
-            frm.Visible = true;
             Close();
         }
 

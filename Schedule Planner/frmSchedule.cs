@@ -27,9 +27,8 @@ namespace Schedule_Planner
 
         private void cmdSwitch_Click(object sender, System.EventArgs e)
         {
-            Enabled = false;
-            Visible = false;
-            (new frmBuilder()).Show();
+            (new frmBuilder()).ShowDialog(); // Blocking
+            mainDB = CourseDB.LoadDB();
         }
 
         private void cmdAdd_Click(object sender, System.EventArgs e)

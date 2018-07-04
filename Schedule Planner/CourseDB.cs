@@ -9,7 +9,7 @@ using xxHashSharp;
 namespace Schedule_Planner
 {
     [Serializable]
-    class CourseDB
+    public class CourseDB
     {
         public  uint    Size { get; private set; }
         private uint    tableSize;
