@@ -192,6 +192,12 @@ namespace Schedule_Planner
         {
             Contract.Requires(Length > 0, "List.DeleteFront(): No Front");
 
+            if (Length == 1)
+            {
+                Flush();
+                return;
+            }
+
             FrontN      = FrontN.Next;
             FrontN.Prev = null;
             --Length;
@@ -201,6 +207,12 @@ namespace Schedule_Planner
         {
             Contract.Requires(Length > 0, "List.deleteBack(): No Back");
 
+            if (Length == 1)
+            {
+                Flush();
+                return;
+            }
+
             BackN      = BackN.Prev;
             BackN.Next = null;
             --Length;
@@ -209,6 +221,12 @@ namespace Schedule_Planner
         public void Delete()
         {
             Contract.Requires(Length > 0 && Index > -1, "List.delete(): List or Cursor not initialized");
+
+            if (Length == 1)
+            {
+                Flush();
+                return;
+            }
 
             if (Index == 0)
             {
@@ -305,6 +323,7 @@ namespace Schedule_Planner
         }
 
         // Inner class wrapper
+        [Serializable]
         public class Node
         {
             public Object Data { get; set; }
