@@ -39,22 +39,22 @@ namespace Schedule_Planner
 
             if (rboFall.Checked)
             {
-                currYear.Fall.Add(cs.CourseID, cs);
+                AddCourse(cs, currYear.Fall);
                 currYear.Fall.PopulateListBox(lbxFall);
             }
             else if (rboWinter.Checked)
             {
-                currYear.Winter.Add(cs.CourseID, cs);
+                AddCourse(cs, currYear.Winter);
                 currYear.Winter.PopulateListBox(lbxWinter);
             }
             else if (rboSpring.Checked)
             {
-                currYear.Spring.Add(cs.CourseID, cs);
+                AddCourse(cs, currYear.Spring);
                 currYear.Spring.PopulateListBox(lbxSpring);
             }
             else if (rboSummer.Checked)
             {
-                currYear.Summer.Add(cs.CourseID, cs);
+                AddCourse(cs, currYear.Summer);
                 currYear.Summer.PopulateListBox(lbxSummer);
             }
         }
@@ -113,6 +113,7 @@ namespace Schedule_Planner
 
             }
 
+            // Only add the course if it's prerequisites have been satisfied
             if (iter.Length > 0)
             {
                 term.Add(course.CourseID, course);
