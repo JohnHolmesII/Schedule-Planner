@@ -29,6 +29,7 @@ namespace Schedule_Planner
         {
             (new frmBuilder()).ShowDialog(); // Blocking
             mainDB = CourseDB.LoadDB();
+            mainDB.PopulateListBox(lbxAvailable);
         }
 
         private void cmdAdd_Click(object sender, System.EventArgs e)
