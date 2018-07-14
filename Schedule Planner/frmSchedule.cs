@@ -8,20 +8,33 @@ namespace Schedule_Planner
         private CourseDB       mainDB;
         private AcademicYear[] plan;
         private int            yearIndex;
+        private int            year;
 
         public frmSchedule()
         {
             InitializeComponent();
+            year    = System.DateTime.Now.Year;
+            plan    = new AcademicYear[1];
+            mainDB  = CourseDB.LoadDB();
+            plan[0] = AcademicYear.LoadYear(year);
 
-            if ((mainDB = CourseDB.LoadDB()) == null)
+            if (mainDB == null)
             {
                 mainDB = new CourseDB(1000);
                 mainDB.SaveDB();
             }
 
+            if (plan[0] == null)
+            {
+                plan[0] = new AcademicYear(year);
+                plan[0].SaveYear();
+            }
+
+            plan[0].Fall.PopulateListBox(lbxFall);
+            plan[0].Winter.PopulateListBox(lbxWinter);
+            plan[0].Spring.PopulateListBox(lbxSpring);
+            plan[0].Summer.PopulateListBox(lbxSummer);
             mainDB.PopulateListBox(lbxAvailable);
-            plan      = new AcademicYear[1];
-            plan[0]   = new AcademicYear();
             yearIndex = 0;
         }
 
@@ -39,27 +52,23 @@ namespace Schedule_Planner
 
             if (rboFall.Checked)
             {
-                AddCourse(cs, currYear.Fall);
-                currYear.Fall.PopulateListBox(lbxFall);
+                AddCourse(cs, currYear.Fall, lbxFall);
             }
             else if (rboWinter.Checked)
             {
-                AddCourse(cs, currYear.Winter);
-                currYear.Winter.PopulateListBox(lbxWinter);
+                AddCourse(cs, currYear.Winter, lbxWinter);
             }
             else if (rboSpring.Checked)
             {
-                AddCourse(cs, currYear.Spring);
-                currYear.Spring.PopulateListBox(lbxSpring);
+                AddCourse(cs, currYear.Spring, lbxSpring);
             }
             else if (rboSummer.Checked)
             {
-                AddCourse(cs, currYear.Summer);
-                currYear.Summer.PopulateListBox(lbxSummer);
+                AddCourse(cs, currYear.Summer, lbxSummer);
             }
         }
 
-        private void AddCourse(Course course, CourseDB term)
+        private void AddCourse(Course course, CourseDB term, ListBox lbx)
         {
             NList        iter = course.Prereqs.Copy();
             AcademicYear ay;
@@ -83,8 +92,9 @@ namespace Schedule_Planner
                 }
             }
 
-            // Check current year for prereqs
             ay = plan[yearIndex];
+
+            // Check current year for prereqs
             for (iter.MoveFront(); iter.Index >= 0; iter.MoveNext())
             {
                 cs = (Course) iter.Get();
@@ -117,10 +127,12 @@ namespace Schedule_Planner
             if (iter.Length < 1)
             {
                 term.Add(course.CourseID, course);
+                ay.SaveYear();
+                term.PopulateListBox(lbx);
             }
         }
 
-        private void AddYear()
+        private void AddYear(int year)
         {
             AcademicYear[] tmp = new AcademicYear[plan.Length + 1];
 
@@ -129,8 +141,8 @@ namespace Schedule_Planner
                 tmp[i] = plan[i];
             }
 
-            tmp[plan.Length] = new AcademicYear();
-            plan = tmp;
+            tmp[plan.Length] = new AcademicYear(year);
+            plan             = tmp;
         }
 
         private void lbxAvailable_SelectedIndexChanged(object sender, System.EventArgs e)

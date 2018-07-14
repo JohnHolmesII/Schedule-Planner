@@ -162,7 +162,7 @@ namespace Schedule_Planner
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error saving. " + e.Message);
+                MessageBox.Show("SaveDB(): Error saving. " + e.Message);
             }
         }
 
