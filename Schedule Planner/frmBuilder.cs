@@ -79,6 +79,16 @@ namespace Schedule_Planner
             }
         }
 
+        private void   cmdRemPre_Click(object sender, EventArgs e)
+        {
+            Course cs = (Course) lbxPrereqs.SelectedItem;
+
+            if (cs != null)
+            {
+                lbxPrereqs.Items.Remove(cs);
+            }
+        }
+
         private string GetString(TextBox txt)
         {
             string id = txt.Text.Trim();
@@ -106,6 +116,7 @@ namespace Schedule_Planner
             if (lbxPrereqs.SelectedItem != null)
             {
                 cmsCourseMenu.Items["tsiViewData"].Enabled = true;
+                cmdRemPre.Enabled = true;
             }
         }
 

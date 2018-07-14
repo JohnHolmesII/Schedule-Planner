@@ -122,9 +122,15 @@ namespace Schedule_Planner
 
         public  bool     ContainsKey(string key)
         {
-            uint keyHash = xxHashSharp.xxHash.CalculateHash(Encoding.UTF8.GetBytes(key));
+            bool temp  = false;
+            uint index = GetIndex(key);
 
-            return table[keyHash].Contains(key) >= 0;
+            if (table[index] != null)
+            {
+                temp = table[index].Contains(key) >= 0;
+            }
+
+            return temp;
         }
 
         private uint     GetIndex(string key)

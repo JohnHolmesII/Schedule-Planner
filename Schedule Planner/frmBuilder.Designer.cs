@@ -30,6 +30,8 @@ namespace Schedule_Planner
         {
             this.components = new System.ComponentModel.Container();
             this.lbxCList = new System.Windows.Forms.ListBox();
+            this.cmsCourseMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsiViewData = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdGo = new System.Windows.Forms.Button();
             this.txtCourseID = new System.Windows.Forms.TextBox();
             this.lblCourseID = new System.Windows.Forms.Label();
@@ -48,10 +50,8 @@ namespace Schedule_Planner
             this.cmdAddPre = new System.Windows.Forms.Button();
             this.cmdRemPre = new System.Windows.Forms.Button();
             this.lblPrereqs = new System.Windows.Forms.Label();
-            this.cmsCourseMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsiViewData = new System.Windows.Forms.ToolStripMenuItem();
-            this.gbxAvail.SuspendLayout();
             this.cmsCourseMenu.SuspendLayout();
+            this.gbxAvail.SuspendLayout();
             this.SuspendLayout();
             //
             // lbxCList
@@ -64,6 +64,21 @@ namespace Schedule_Planner
             this.lbxCList.Sorted = true;
             this.lbxCList.TabIndex = 0;
             this.lbxCList.SelectedIndexChanged += new System.EventHandler(this.lbxCList_SelectedIndexChanged);
+            //
+            // cmsCourseMenu
+            //
+            this.cmsCourseMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsiViewData});
+            this.cmsCourseMenu.Name = "contextMenuStrip1";
+            this.cmsCourseMenu.Size = new System.Drawing.Size(167, 26);
+            this.cmsCourseMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCourseMenu_ItemClicked);
+            //
+            // tsiViewData
+            //
+            this.tsiViewData.Enabled = false;
+            this.tsiViewData.Name = "tsiViewData";
+            this.tsiViewData.Size = new System.Drawing.Size(166, 22);
+            this.tsiViewData.Text = "View Course Data";
             //
             // cmdGo
             //
@@ -226,6 +241,7 @@ namespace Schedule_Planner
             this.cmdRemPre.TabIndex = 21;
             this.cmdRemPre.Text = "Remove Prereq";
             this.cmdRemPre.UseVisualStyleBackColor = true;
+            this.cmdRemPre.Click += new System.EventHandler(this.cmdRemPre_Click);
             //
             // lblPrereqs
             //
@@ -235,21 +251,6 @@ namespace Schedule_Planner
             this.lblPrereqs.Size = new System.Drawing.Size(67, 13);
             this.lblPrereqs.TabIndex = 22;
             this.lblPrereqs.Text = "Prerequisites";
-            //
-            // cmsCourseMenu
-            //
-            this.cmsCourseMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsiViewData});
-            this.cmsCourseMenu.Name = "contextMenuStrip1";
-            this.cmsCourseMenu.Size = new System.Drawing.Size(167, 26);
-            this.cmsCourseMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCourseMenu_ItemClicked);
-            //
-            // tsiViewData
-            //
-            this.tsiViewData.Enabled = false;
-            this.tsiViewData.Name = "tsiViewData";
-            this.tsiViewData.Size = new System.Drawing.Size(180, 22);
-            this.tsiViewData.Text = "View Course Data";
             //
             // frmBuilder
             //
@@ -274,9 +275,9 @@ namespace Schedule_Planner
             this.Controls.Add(this.lbxCList);
             this.Name = "frmBuilder";
             this.Text = "Course Builder";
+            this.cmsCourseMenu.ResumeLayout(false);
             this.gbxAvail.ResumeLayout(false);
             this.gbxAvail.PerformLayout();
-            this.cmsCourseMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

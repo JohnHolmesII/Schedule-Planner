@@ -114,7 +114,7 @@ namespace Schedule_Planner
             }
 
             // Only add the course if it's prerequisites have been satisfied
-            if (iter.Length > 0)
+            if (iter.Length < 1)
             {
                 term.Add(course.CourseID, course);
             }

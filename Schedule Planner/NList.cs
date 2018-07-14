@@ -61,7 +61,7 @@ namespace Schedule_Planner
 
             Node curr = FrontN;
 
-            while (curr != null && !((CourseDB.Entry) curr.Data).Key.Equals(key))
+            while (curr != null && ((CourseDB.Entry) curr.Data).Key.Equals(key))
             {
                 curr = curr.Next;
                 ++tmp;
