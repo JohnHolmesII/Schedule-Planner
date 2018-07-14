@@ -198,6 +198,12 @@ namespace Schedule_Planner
                 Key   = k;
                 Value = v;
             }
+
+            override
+            public string ToString()
+            {
+                return Key;
+            }
         }
     }
 }

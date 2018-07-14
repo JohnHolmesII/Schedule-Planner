@@ -346,7 +346,7 @@ namespace Schedule_Planner
                 if (Prev != null) p = Prev.Data.ToString();
                 if (Next != null) n = Next.Data.ToString();
 
-                return String.Format("%-2s<> %-2s<> %-2s", p, Data, n).Trim();
+                return String.Format("{0}<>{1}<>{2}", p, Data, n).Trim();
             }
         }
     }
