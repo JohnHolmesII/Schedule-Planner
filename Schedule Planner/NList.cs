@@ -127,6 +127,7 @@ namespace Schedule_Planner
             }
             else
             {
+                if (Index >= 0) ++Index;
                 FrontN.Prev = tmp;
                 FrontN      = tmp;
             }
@@ -163,6 +164,7 @@ namespace Schedule_Planner
                 Cursor.Prev.Next = tmp;
                 Cursor.Prev      = tmp;
                 ++Length;
+                ++Index;
             }
             else            // Front of the list
             {
@@ -195,12 +197,14 @@ namespace Schedule_Planner
             if (Length == 1)
             {
                 Flush();
-                return;
             }
-
-            FrontN      = FrontN.Next;
-            FrontN.Prev = null;
-            --Length;
+            else
+            {
+                if (Index >= 0) --Index;
+                FrontN      = FrontN.Next;
+                FrontN.Prev = null;
+                --Length;
+            }
         }
 
         public void DeleteBack()
@@ -210,12 +214,19 @@ namespace Schedule_Planner
             if (Length == 1)
             {
                 Flush();
-                return;
             }
+            else
+            {
+                if (Cursor == BackN)
+                {
+                    Cursor = null;
+                    Index  = -1;
+                }
 
-            BackN      = BackN.Prev;
-            BackN.Next = null;
-            --Length;
+                BackN      = BackN.Prev;
+                BackN.Next = null;
+                --Length;
+            }
         }
 
         public void Delete()
@@ -225,10 +236,8 @@ namespace Schedule_Planner
             if (Length == 1)
             {
                 Flush();
-                return;
             }
-
-            if (Index == 0)
+            else if (Index == 0)
             {
                 DeleteFront();
             }
@@ -240,13 +249,30 @@ namespace Schedule_Planner
             {
                 Cursor.Prev.Next = Cursor.Next;
                 Cursor.Next.Prev = Cursor.Prev;
-                Cursor = null;
-                Index  = -1;
+                Cursor           = null;
+                Index            = -1;
                 --Length;
             }
         }
 
         // Other methods
+        public NList Copy()
+        {
+            NList tmp       = null;
+            Node  tmpCursor = Cursor;
+            int   tmpIndex  = Index;
+
+            for(MoveFront(); Index >= 0; MoveNext())
+            {
+                tmp.Append(((ICloneable) Get()).Clone());
+            }
+
+            Index  = tmpIndex;
+            Cursor = tmpCursor;
+
+            return tmp;
+        }
+
         override
         public String ToString()
         {
@@ -294,51 +320,30 @@ namespace Schedule_Planner
             return tmp;
         }
 
-        public NList Copy()
-        {
-            NList tmp  = new NList();
-            Node  curr = FrontN;
-
-            while (curr != null)
-            {
-                tmp.Append(curr.Data);
-                curr = curr.Next;
-            }
-
-            return tmp;
-        }
-
-        public NList Concat(NList L)
-        {
-            NList tmp  = Copy();
-            Node  curr = L.FrontN;
-
-            while (curr != null)
-            {
-                tmp.Append(curr.Data);
-                curr = curr.Next;
-            }
-
-            return tmp;
-        }
-
         // Inner class wrapper
         [Serializable]
-        public class Node
+        private class Node : ICloneable
         {
             public Object Data { get; set; }
             public Node   Prev { get; set; }
             public Node   Next { get; set; }
 
-            public Node(Object d, Node p, Node n)
+            public  Node(Object d, Node p, Node n)
             {
                 Data = d;
                 Prev = p;
                 Next = n;
             }
 
+            private Node(Node other)
+            {
+                Data = other.Data;
+                Prev = other.Prev;
+                Next = other.Next;
+            }
+
             override
-            public String ToString()
+            public  String ToString()
             {
                 String p = "N";
                 String n = "N";
@@ -347,6 +352,11 @@ namespace Schedule_Planner
                 if (Next != null) n = Next.Data.ToString();
 
                 return String.Format("{0}<>{1}<>{2}", p, Data, n).Trim();
+            }
+
+            public  object Clone()
+            {
+                return new Node(this);
             }
         }
     }
