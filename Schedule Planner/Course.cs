@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Schedule_Planner
 {
     [Serializable]
-    public class Course
+    public class Course : ICloneable
     {
         public string CourseID    { get; }
         public string Description { get; }
@@ -66,6 +66,11 @@ namespace Schedule_Planner
         public  string ToString()
         {
             return String.Format("{0}: {1}, {2} Units, Available: {3}", CourseID, Description, Units, Availability());
+        }
+
+        public object Clone()
+        {
+            return this;
         }
     }
 }

@@ -55,21 +55,6 @@ namespace Schedule_Planner
             BackN  = null;
         }
 
-        public int  Contains(string key)
-        {
-            int tmp = -1;
-
-            Node curr = FrontN;
-
-            while (curr != null && ((CourseDB.Entry) curr.Data).Key.Equals(key))
-            {
-                curr = curr.Next;
-                ++tmp;
-            }
-
-            return tmp;
-        }
-
         public void MoveFront()
         {
             if (Length > 0)
@@ -264,12 +249,29 @@ namespace Schedule_Planner
         // Other methods
         public NList Copy()
         {
-            NList tmp = new NList();
+            if (Length > 0)
+            {
+                NList tmp = new NList();
+                Node tmpCursor;
 
-            tmp.FrontN = (Node) FrontN.Clone();
-            tmp.Length = Length;
+                tmp.FrontN = (Node) FrontN.Clone();
+                tmp.Length = Length;
+                tmpCursor = tmp.FrontN;
 
-            return tmp;
+                while (tmpCursor != null)
+                {
+                    if (tmpCursor.Next == null)
+                    {
+                        tmp.BackN = tmpCursor;
+                    }
+
+                    tmpCursor = tmpCursor.Next;
+                }
+
+                return tmp;
+            }
+
+            return new NList();
         }
 
         private bool VerifyType(Object o)

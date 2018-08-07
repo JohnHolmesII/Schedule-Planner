@@ -122,12 +122,22 @@ namespace Schedule_Planner
 
         public  bool     ContainsKey(string key)
         {
-            bool temp  = false;
-            uint index = GetIndex(key);
+            bool  temp   = false;
+            uint  index  = GetIndex(key);
+            NList bucket = table[index];
+            Entry entry;
 
-            if (table[index] != null)
+            if (bucket != null)
             {
-                temp = table[index].Contains(key) >= 0;
+                for (bucket.MoveFront(); bucket.Index >= 0; bucket.MoveNext())
+                {
+                    entry = (Entry) bucket.Get();
+
+                    if (entry.Key.Equals(key))
+                    {
+                        return true;
+                    }
+                }
             }
 
             return temp;
@@ -188,21 +198,32 @@ namespace Schedule_Planner
         }
 
         [Serializable]
-        public class Entry
+        private class Entry : ICloneable
         {
             public string Key   { get; }
             public Course Value { get; set; }
 
-            public Entry(string k, Course v)
+            public  Entry(string k, Course v)
             {
                 Key   = k;
                 Value = v;
+            }
+
+            private Entry(Entry e)
+            {
+                Key   = e.Key;
+                Value = e.Value;
             }
 
             override
             public string ToString()
             {
                 return Key;
+            }
+
+            public object Clone()
+            {
+                return new Entry(this);
             }
         }
     }
