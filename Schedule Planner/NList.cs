@@ -118,7 +118,9 @@ namespace Schedule_Planner
 
         public void Prepend(Object Data)
         {
-            Node tmp = new Node(Data, null, FrontN);
+            Contract.Requires(VerifyType(Data), "Data not cloneable");
+
+            Node tmp = new Node((ICloneable) Data, null, FrontN);
 
             if (Length == 0)
             {
@@ -137,7 +139,9 @@ namespace Schedule_Planner
 
         public void Append(Object Data)
         {
-            Node tmp = new Node(Data, BackN, null);
+            Contract.Requires(VerifyType(Data), "Data not cloneable");
+
+            Node tmp = new Node((ICloneable) Data, BackN, null);
 
             if (Length == 0)
             {
@@ -156,8 +160,9 @@ namespace Schedule_Planner
         public void InsertBefore(Object Data)
         {
             Contract.Requires(Length > 0 && Index > -1, "List.InsertBefore(): List or Cursor not initialized");
+            Contract.Requires(VerifyType(Data), "Data not cloneable");
 
-            Node tmp = new Node(Data, Cursor.Prev, Cursor);
+            Node tmp = new Node((ICloneable) Data, Cursor.Prev, Cursor);
 
             if (Index != 0) // Middle of the list
             {
@@ -175,8 +180,9 @@ namespace Schedule_Planner
         public void InsertAfter(Object Data)
         {
             Contract.Requires(Length > 0 && Index > -1, "List.InsertAfter(): List or Cursor not initialized");
+            Contract.Requires(VerifyType(Data), "Data not cloneable");
 
-            Node tmp = new Node(Data, Cursor, Cursor.Next);
+            Node tmp = new Node((ICloneable) Data, Cursor, Cursor.Next);
 
             if (Index != Length - 1) // Middle of the list
             {
@@ -258,19 +264,17 @@ namespace Schedule_Planner
         // Other methods
         public NList Copy()
         {
-            NList tmp       = null;
-            Node  tmpCursor = Cursor;
-            int   tmpIndex  = Index;
+            NList tmp = new NList();
 
-            for(MoveFront(); Index >= 0; MoveNext())
-            {
-                tmp.Append(((ICloneable) Get()).Clone());
-            }
-
-            Index  = tmpIndex;
-            Cursor = tmpCursor;
+            tmp.FrontN = (Node) FrontN.Clone();
+            tmp.Length = Length;
 
             return tmp;
+        }
+
+        private bool VerifyType(Object o)
+        {
+            return o is ICloneable;
         }
 
         override
@@ -324,11 +328,11 @@ namespace Schedule_Planner
         [Serializable]
         private class Node : ICloneable
         {
-            public Object Data { get; set; }
-            public Node   Prev { get; set; }
-            public Node   Next { get; set; }
+            public ICloneable Data { get; set; }
+            public Node       Prev { get; set; }
+            public Node       Next { get; set; }
 
-            public  Node(Object d, Node p, Node n)
+            public  Node(ICloneable d, Node p, Node n)
             {
                 Data = d;
                 Prev = p;
@@ -337,9 +341,28 @@ namespace Schedule_Planner
 
             private Node(Node other)
             {
-                Data = other.Data;
-                Prev = other.Prev;
-                Next = other.Next;
+                Data = (ICloneable) other.Data.Clone();
+
+                if (other.Prev == null && other.Next == null)
+                {
+                    Prev = null;
+                    Next = null;
+                }
+                else if (other.Prev != null && other.Next == null)
+                {
+                    Prev = (Node) other.Prev.Clone();
+                    Next = null;
+                }
+                else if (other.Prev == null && other.Next != null)
+                {
+                    Prev = null;
+                    Next = (Node) other.Next.Clone();
+                }
+                else
+                {
+                    Prev = (Node) other.Prev.Clone();
+                    Next = (Node) other.Next.Clone();
+                }
             }
 
             override
